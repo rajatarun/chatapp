@@ -11,18 +11,23 @@ gulp.task('style',function() {
 });
 gulp.task('inject',function(){
 	var wiredep = require('wiredep').stream;
+	var inject = require('gulp-inject');
 	var options = {
 		bowerJson: require('./bower.json'),
 		directory: './bower_components'
 	}
-	return gulp.src('./src/*.html').pipe(wiredep(options))
+	var injectPath = gulp.src(['./src/js/**/.js','./src/js/*.js','./src/css/*.css'],{read:false});
+	var injectOptions = {
+		ignorePath:'/src'
+	}
+	return gulp.src('./src/*.html').pipe(wiredep(options)).pipe(inject(injectPath,injectOptions))
 	.pipe(gulp.dest('./src'));
 });
 gulp.task('build',function(){
 	var files = ['./src/**/*.*','./routes/**/*.*','./tasks/**/*.*','./*.*','./.*'];
 	gulp.src(files,{base:'./'}).pipe(gulp.dest('./build'));
-})
+});
 gulp.task('watch',function(){
 	var files = ['./src/**/*.*','./routes/**/*.*','./tasks/**/*.*','./*.*','./.*'];
 	gulp.watch(files,['build']);
-})
+});
