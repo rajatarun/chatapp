@@ -23,6 +23,7 @@
     "passport": "^0.3.2"
   },
   "devDependencies": {
+    "gulp-inject": "^4.1.0",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.1",
     "gulp-wiredep": "0.0.0",
