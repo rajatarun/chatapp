@@ -21,7 +21,8 @@
     "gulp": "^3.9.1",
     "karma": "^1.2.0",
     "mongodb": "^2.2.7",
-    "passport": "^0.3.2"
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0"
   },
   "devDependencies": {
     "cookie-parser": "^1.4.3",

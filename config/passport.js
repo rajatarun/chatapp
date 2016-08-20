@@ -6,11 +6,12 @@ module.exports = function(app){
 	app.use(passport.session());
 
 	passport.serializeUser(function(user,done){
-		done(err,user);
+		done(null,user);
 	});
 	passport.deserializeUser(function(user,done){
 		//mongodb connection to get user
-		done(err,user);
+		done(null,user);
 	});
 	require('./strategies/local.strategy')();
+	require('./strategies/google.strategy')();
 };

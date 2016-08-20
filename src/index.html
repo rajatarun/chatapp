@@ -1,5 +1,7 @@
 <html>
 <head>
+<!-- inject:css -->
+<!-- endinject -->
 <!-- bower:css -->
 <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
@@ -9,7 +11,11 @@
 
 <body ng-app='app'>
 <h1></h1>
-
+<ul>
+	<li>
+	<a href="/auth/google" class="googleplus">Google</a>
+	</li>
+</ul>
 <!-- bower:js -->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/meld/meld.js"></script>
@@ -25,8 +31,7 @@
 
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<!-- inject:css -->
-<!-- endinject -->
+
 <!-- inject:js -->
 <script src="/js/dep.js"></script>
 <!-- endinject -->

@@ -1,6 +1,6 @@
 var mongodb = require('mongodb').MongoClient;
 /* GET users listing. */
-
+var passport = require('passport');
 var router = function(express){
 	var authRouter = express.Router();
 	authRouter.post('/signUp',function(req, res) {
@@ -22,9 +22,21 @@ var router = function(express){
 			});
 	  		
 		});
+	authRouter.post('/signIn',passport.authenticate('local',{ failureRedirect: '/'}),
+			function(req,res){
+					res.redirect('/auth/profile');
+	});
 	authRouter.get('/profile',function(req,res){
-			res.send('/auth/profile1');	
+			res.json(req.user);	
 		});
+	authRouter.get('/google/callback',passport.authenticate('google',{
+		successRedirect: '/users/',
+		failure: '/error/'
+	}));
+	authRouter.get('/google',passport.authenticate('google',{
+			scope: ['https://www.googleapis.com/auth/userinfo.profile',
+			'https://www.googleapis.com/auth/userinfo.email']
+	}));
 	return authRouter;
 }
 module.exports = router;
