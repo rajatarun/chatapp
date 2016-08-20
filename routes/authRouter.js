@@ -37,6 +37,14 @@ var router = function(express){
 			scope: ['https://www.googleapis.com/auth/userinfo.profile',
 			'https://www.googleapis.com/auth/userinfo.email']
 	}));
+	authRouter.get('/facebook/callback',passport.authenticate('facebook',{
+		successRedirect: '/users/',
+		failureRedirect: '/error/'
+	}));
+	authRouter.get('/facebook',passport.authenticate('facebook',{
+			scope: ['email']
+	}));
+
 	return authRouter;
 }
 module.exports = router;
