@@ -10,7 +10,6 @@
         "try",
         "catch"
     ],
-    "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
     "maximumLineLength": {
       "value": 200,

@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
-var jsFiles = ['*.js','src/**/*.js'];
+var jsFiles = ['*.js','src/js/**/*.js'];
 
 gulp.task('style',function() {
 	return gulp.src(jsFiles).pipe(jshint()).pipe(jshint.reporter('jshint-stylish',{
@@ -14,12 +14,12 @@ gulp.task('inject',function(){
 	var inject = require('gulp-inject');
 	var options = {
 		bowerJson: require('./bower.json'),
-		directory: './bower_components'
-	}
+		directory: './src/lib'
+	};
 	var injectPath = gulp.src(['./src/js/**/.js','./src/js/*.js','./src/css/*.css'],{read:false});
 	var injectOptions = {
 		ignorePath:'/src'
-	}
+	};
 	return gulp.src('./src/*.html').pipe(wiredep(options)).pipe(inject(injectPath,injectOptions))
 	.pipe(gulp.dest('./src'));
 });

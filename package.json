@@ -20,15 +20,20 @@
     "express": "^4.14.0",
     "gulp": "^3.9.1",
     "karma": "^1.2.0",
+    "mongodb": "^2.2.7",
     "passport": "^0.3.2"
   },
   "devDependencies": {
+    "cookie-parser": "^1.4.3",
+    "express-session": "^1.14.0",
     "gulp-inject": "^4.1.0",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.1",
     "gulp-wiredep": "0.0.0",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.2.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "wiredep": "^4.0.0"
   }
 }
