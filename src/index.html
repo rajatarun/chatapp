@@ -7,10 +7,12 @@
 <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
 <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
 <!-- endbower -->
+<base href="/">
 </head>
 
 <body ng-app='app'>
-<h1></h1>
+<div ng-controller="mainCntrl">
+<div ng-view></div>
 <ul>
 	<li>
 	<a href="/auth/google" class="googleplus">Google</a>
@@ -30,6 +32,7 @@
 <script src="lib/angular-aria/angular-aria.js"></script>
 <script src="lib/angular-messages/angular-messages.js"></script>
 <script src="lib/angular-material/angular-material.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
 <!-- endbower -->
 
 
@@ -37,6 +40,9 @@
 
 <!-- inject:js -->
 <script src="/js/dep.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/registration.js"></script>
 <!-- endinject -->
+</div>
 </body>
 </html>
