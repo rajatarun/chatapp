@@ -1,26 +1,31 @@
 <html>
 <head>
+	<base href="/">
 <!-- inject:css -->
 <!-- endinject -->
 <!-- bower:css -->
 <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
+   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" >
 <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
 <!-- endbower -->
-<base href="/">
-</head>
+<script src="https://use.typekit.net/tkj4khh.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
+</head>
 <body ng-app='app'>
-<div ng-controller="mainCntrl">
-<div ng-view></div>
-<ul>
+	<chat-header></chat-header>
+	<div data-ng-controller="mainCntrl">
+		<div ng-view></div>
+	</div>
+<!-- <ul>
 	<li>
 	<a href="/auth/google" class="googleplus">Google</a>
 	</li>
 	<li>
 		<a href="/auth/facebook"><i class="fa fa-facebook"></i></a>
 	</li>
-</ul>
+</ul> -->
 <!-- bower:js -->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/meld/meld.js"></script>
@@ -39,10 +44,12 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <!-- inject:js -->
-<script src="/js/dep.js"></script>
-<script src="/js/login.js"></script>
-<script src="/js/registration.js"></script>
+<script src="/js/controller/dep.js"></script>
+<script src="/js/controller/login.js"></script>
+<script src="/js/controller/registration.js"></script>
+<script src="/js/directives/chatHeader.js"></script>
 <!-- endinject -->
-</div>
+
+
 </body>
 </html>

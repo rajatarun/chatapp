@@ -1,9 +1,9 @@
-angular.module('app',['ngRoute'])
+angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.header', 'app.login'])
 	.config(['$routeProvider','$locationProvider',
         function($routeProvider, $locationProvider) {
             $routeProvider
                 .when('/login', {
-                	path: "#/login",
+                	path: "/login",
                     templateUrl:"templates/login.html",
                     controller:'logController'
                 })

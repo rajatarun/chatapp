@@ -16,7 +16,7 @@ gulp.task('inject',function(){
 		bowerJson: require('./bower.json'),
 		directory: './src/lib'
 	};
-	var injectPath = gulp.src(['./src/js/**/.js','./src/js/*.js','./src/css/*.css'],{read:false});
+	var injectPath = gulp.src(['./src/js/*.js','./src/js/controller/*.js','./src/js/directives/*.js','./src/js/services/*.js','./src/css/*.css'],{read:false});
 	var injectOptions = {
 		ignorePath:'/src'
 	};

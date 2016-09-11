@@ -1,1 +1,23 @@
-hello
+<md-content>
+<div layout="column" layout-align="center center" layout-margin>
+	<h1 class="md-display-1">login</h1>
+</div>
+
+<md-whiteframe class="md-whiteframe-4dp" >
+<form name="loginForm" noValidate>
+    <md-input-container>
+    <input type="text" name="username" required data-ng-model="formData.username" minlength="8">
+    <div ng-messages="loginForm.username.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	<md-input-container>
+    <input type="password" name="password" required data-ng-model="formData.password" minlength="8">
+    <div ng-messages="loginForm.password.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	</form>
+ </md-whiteframe>
+
+</md-content>
