@@ -1,0 +1,1 @@
+var router=function(r){var e=r.Router();return e.use(function(r,e,o){r.user||e.redirerct("/"),o()}),e.get("/",function(r,e,o){console.log(r.user),e.json(r.user)}),e};module.exports=router;

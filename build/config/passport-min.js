@@ -1,0 +1,1 @@
+var passport=require("passport");module.exports=function(e){console.log("passport initialized"),e.use(passport.initialize()),e.use(passport.session()),passport.serializeUser(function(e,s){s(null,e)}),passport.deserializeUser(function(e,s){s(null,e)}),require("./strategies/local.strategy")(),require("./strategies/google.strategy")(),require("./strategies/facebook.strategy")()};

@@ -3,4 +3,6 @@ app.controller('logController',logController);
 
 	logController.$inject =['$scope', '$location'];
 	function logController($scope, $location){
+		debugger;
+		$scope.loginFrame = true;
 	};

@@ -1,0 +1,1 @@
+module.exports={url:"mongodb://Rajatarun12:Rajatarun1@ds023445.mlab.com:23445/chatapp"};

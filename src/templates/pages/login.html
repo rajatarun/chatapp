@@ -1,1 +1,101 @@
-hello
+
+	<div layout="column" layout-align="center center">
+		<h1 class="md-display-2" data-ng-if="loginFrame">Login</h1>
+		<h1 class="md-display-2" data-ng-if="regFrame">Register</h1>
+	</div>
+<form name="loginForm"layout="row" novalidate>
+	<span hide-xs hide-sm flex-gt-sm="30"></span>
+<!-- 	login code -->
+<md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="40" layout="column" layout-padding data-ng-if="loginFrame">
+<br>
+    <div layout = "row">
+    <md-button ng-href="/auth/google" class="md-raised md-warn" flex-gt-sm><span class="fa fa-google" style="font-size:15px;"></span>  Sign in With Google</md-button>
+    <md-button ng-href="/auth/facebook" class="md-raised md-primary" flex-gt-sm><span class="fa fa-facebook" style="font-size:15px;"></span> Sign in With Facebook</md-button>
+    </div>
+    <br>
+    <div layout="column">
+    <md-input-container  layout-margin>
+    <label>USERNAME</label>
+    <input type="text" name="username" required data-ng-model="formData.username" minlength="8">
+    <div ng-messages="loginForm.username.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	<md-input-container md-no-float layout-margin>
+	<label>PASSWORD</label>
+    <input type="password" name="password" required data-ng-model="formData.password" minlength="8">
+    <div ng-messages="loginForm.password.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	</div>
+	<div layout="column" layout-align="center center">
+	<md-button class="md-raised md-primary">sign in</md-button>
+	</div>
+ </md-whiteframe>
+ 
+<!--  registration code -->
+ <md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="40" layout="column" layout-padding data-ng-if="regFrame">
+<br>
+    <div layout = "row">
+    <md-button ng-href="/auth/google" class="md-raised md-warn" flex-gt-sm><span class="fa fa-google" style="font-size:15px;"></span>  Sign in With Google</md-button>
+    <md-button ng-href="/auth/facebook" class="md-raised md-primary" flex-gt-sm><span class="fa fa-facebook" style="font-size:15px;"></span> Sign in With Facebook</md-button>
+    </div>
+    <br>
+    <div layout="column">
+    <md-input-container  layout-margin>
+    <label>EMAIL</label>
+    <input type="email" name="email" required data-ng-model="formData.email" minlength="8">
+    <div ng-messages="loginForm.email.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+    <md-input-container  layout-margin>
+    <label>USERNAME</label>
+    <input type="text" name="username" required data-ng-model="formData.username" minlength="8">
+    <div ng-messages="loginForm.username.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	<md-input-container  layout-margin>
+	<label>PASSWORD</label>
+    <input type="password" name="password" required data-ng-model="formData.password" minlength="8">
+    <div ng-messages="loginForm.password.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	<md-input-container  layout-margin>
+	<label>CONFIRM PASSWORD</label>
+    <input type="password" name="repassword" required data-ng-model="formData.repassword" minlength="8">
+    <div ng-messages="loginForm.repassword.$error">
+         <div ng-message="required" >this is required.</div>
+    </div>
+	</md-input-container>
+	<div layout="column">
+	<p class="md-body-1">Gender</p>
+	<md-input-container  layout-margin>
+	    <md-radio-group ng-model="formData.gender" name="gender" required layout-gt-sm="row">
+      <md-radio-button value="male">Male</md-radio-button>
+      <md-radio-button value="female"> Female </md-radio-button>
+    </md-radio-group>
+    <div ng-messages="loginForm.gender.$error">
+            <div ng-message="required">This date is required!</div>
+          </div>
+    </md-input-container>
+    </div>
+    <div layout="row">
+	<md-input-container  layout-margin>
+          <label>date of birth</label>
+          <md-datepicker ng-model="formData.DOB" name="DOB" required></md-datepicker>
+          <div ng-messages="loginForm.DOB.$error">
+            <div ng-message="required">This date is required!</div>
+          </div>
+    </md-input-container>
+    </div>
+    </div>
+	<div layout="column" layout-align="center center">
+	<md-button class="md-raised md-primary">Register</md-button>
+	</div>
+ </md-whiteframe>
+ <span hide-xs hide-sm flex-gt-sm="20"></span>
+ </form>
