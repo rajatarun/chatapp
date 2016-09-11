@@ -6,15 +6,20 @@
 	<span hide-xs hide-sm flex-gt-sm="30"></span>
 <md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="40" layout="column" layout-padding>
 <br>
-    <md-input-container layout-margin>
-    <label>username</label>
+    <div layout = "row">
+    <md-button class="md-raised md-warn" flex-gt-sm><span class="fa fa-google" style="font-size:15px;"></span>  Sign in With Google</md-button>
+    <md-button class="md-raised md-primary" flex-gt-sm><span class="fa fa-facebook" style="font-size:15px;"></span> Sign in With Facebook</md-button>
+    </div>
+    <br>
+    <md-input-container md-no-float layout-margin>
+    <label>USERNAME</label>
     <input type="text" name="username" required data-ng-model="formData.username" minlength="8">
     <div ng-messages="loginForm.username.$error">
          <div ng-message="required" >this is required.</div>
     </div>
 	</md-input-container>
-	<md-input-container layout-margin>
-	<label>password</label>
+	<md-input-container md-no-float layout-margin>
+	<label>PASSWORD</label>
     <input type="password" name="password" required data-ng-model="formData.password" minlength="8">
     <div ng-messages="loginForm.password.$error">
          <div ng-message="required" >this is required.</div>

@@ -1,0 +1,1 @@
+var indexRouter=function(e){var o=e.Router();return o.route("/").get(function(e,o,n){console.log("hello"),o.send("index")}),o};module.exports=indexRouter;
