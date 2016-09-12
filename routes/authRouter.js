@@ -30,7 +30,7 @@ var router = function(express){
 			res.json(req.user);	
 		});
 	authRouter.get('/google/callback',passport.authenticate('google',{
-		successRedirect: '/users/',
+		successRedirect: '/users',
 		failure: '/error/'
 	}));
 	authRouter.get('/google',passport.authenticate('google',{
@@ -38,7 +38,7 @@ var router = function(express){
 			'https://www.googleapis.com/auth/userinfo.email']
 	}));
 	authRouter.get('/facebook/callback',passport.authenticate('facebook',{
-		successRedirect: '/users/',
+		successRedirect: '/users',
 		failureRedirect: '/error/'
 	}));
 	authRouter.get('/facebook',passport.authenticate('facebook',{

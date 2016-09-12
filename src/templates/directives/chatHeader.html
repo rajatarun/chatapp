@@ -5,11 +5,12 @@
           <span>Smiley Chat</span>
         </h2>
         
-        <md-button ng-href="/login" layout-align="end end" flex-gt-sm="10"  >
+        <md-button ng-if="userName">{{userName}}</md-button>
+        <md-button ng-hide="!!userName" ng-href="/login" layout-align="end end" flex-gt-sm="10"  >
          <md-icon class="material-icons">&#xE7FD;</md-icon> 
          <span>login</span>
         </md-button>
-        <md-button ng-href="/register" layout-align="end end"  flex-gt-sm="10">
+        <md-button ng-hide="!!userName" ng-href="/register" layout-align="end end"  flex-gt-sm="10">
          <md-icon class="material-icons">&#xE7FE;</md-icon> 
          <span> register</span>
         </md-button>
