@@ -4,8 +4,10 @@
         <h2 flex-gt-sm="85">
           <span>Smiley Chat</span>
         </h2>
-        
         <md-button ng-if="userName">{{userName}}</md-button>
+        <md-button ng-if="userName" class="md-icon-button" style="height: 4rem;width: 4rem;">
+        <img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 100%;width: 100%;">
+        </md-button>
         <md-button ng-hide="!!userName" ng-href="/#login" layout-align="end end" flex-gt-sm="10"  >
          <md-icon class="material-icons">&#xE7FD;</md-icon> 
          <span>login</span>
