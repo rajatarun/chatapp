@@ -11,7 +11,10 @@
 		}
 	};
 
-	chatHeaderController.$inject =['$scope', '$location'];
-	function chatHeaderController($scope, $location){
-		
+	chatHeaderController.$inject =['$rootScope','$scope', '$location'];
+	function chatHeaderController($rootScope,$scope, $location){
+		$scope.$on('userLogin',function(event,user){
+			debugger;
+			$scope.userName = user.displayName;
+		});
 	};

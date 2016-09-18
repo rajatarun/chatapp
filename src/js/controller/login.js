@@ -2,11 +2,9 @@
 var app = angular.module("app.login",[])
 app.controller('logController',logController);
 
-	logController.$inject =['$scope', '$location'];
-	function logController($scope, $location){
-		debugger;
+	logController.$inject =['$window','$scope', '$location'];
+	function logController($window,$scope, $location){
 		$scope.googleRedirect = function(){
-			$window.location.href = '/auth/google';
-			}
-		$scope.loginFrame = true;
+		$window.location.href = '/auth/google';
+		}
 	};
