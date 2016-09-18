@@ -8,6 +8,14 @@ userRouter.use(function(req,res,next){
 	}
 	next();
 });
+userRouter.get('/authenticate',function(req,res){
+	if(req.user){
+		res.send({status:'SUCCESS',user:req.user});
+	}
+	else{
+		res.send({status:'FAILED'});	
+	}
+});
 userRouter.get('/', function(req, res, next) {
 	res.redirect('/#users/'+req.user.name.givenName);
 });

@@ -1,4 +1,4 @@
-angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.header', 'app.login', 'app.register', 'app.user.main.page'])
+angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.header', 'app.login', 'app.register', 'app.user.main.page','app.user.contacts'])
 	.config(['$routeProvider','$locationProvider',
         function($routeProvider, $locationProvider) {
             $routeProvider
@@ -14,8 +14,12 @@ angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.
                 .when('/register', {
                     templateUrl:"templates/login.html",
                     controller:'regController'
+                })
+                .when('/user/contacts',{
+                    templateUrl:"templates/pages/contacts.html",
+                    controller:'contactsController'
                 });
-                $locationProvider.html5Mode(true);
+                
             }])
 	 .controller('mainCntrl',['$routeParams',function($routeParams)
     {
