@@ -2,7 +2,7 @@
 		<div flex="25" layout-margin>
 			<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-2dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 				<md-list>
-					<md-item>
+					<md-list-item>
 						<a>
 							<md-item-content  md-ink-ripple layout="row" layout-align="start center">
 								<div class="inset">
@@ -10,8 +10,8 @@
 								</div>
 							</md-item-content>
 						</a>
-					</md-item>
-					<md-item >
+					</md-list-item>
+					<md-list-item >
 						<a>
 							<md-item-content  md-ink-ripple layout="row" layout-align="start center">
 								<div class="inset">
@@ -19,13 +19,13 @@
 								</div>
 							</md-item-content>
 						</a>
-					</md-item>
+					</md-list-item>
 				</md-list>
 			</md-sidenav>
 		</div>
 		<div flex="70" layout-margin>
 			<md-card>
-				<md-toolbar class="md-tall" md-scroll-shrink>	
+				<md-toolbar  md-scroll-shrink>	
 				<span flex></span>
 				<h1 class=".md-display-1" layout-margin>
 					All Contacts
@@ -33,17 +33,17 @@
 				</md-toolbar>
 				<md-list>
 					<br>
-					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList">
-						<md-checkbox  flex="10"></md-checkbox>
-						<p flex="20" layout-wrap>{{contact.Name}}</p>
-						<p flex="20" layout-wrap>{{contact['E-mail 1 - Value']}}</p>
-						<p flex="20" layout-wrap>{{contact['Phone 1 - Value']}}</p>
-						<i class="material-icons" flex="10">star_border</i>
-						<md-menu flex="10">
-							<md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="contactCtrl.openMenu($mdOpenMenu, $event)">
+					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList | limitTo:10" ng-if="contact.Name">
+						<md-checkbox class="md-accent" flex="5"></md-checkbox>
+						<p flex="20" >{{contact.Name}}</p>
+						<p flex="30" >{{contact['E-mail 1 - Value']}}</p>
+						<p flex="30">{{contact['Phone 1 - Value']}}</p>
+						<i class="material-icons" flex="5">star_border</i>
+						<md-menu >
+							<md-button aria-label="Open phone interactions menu"  class="md-icon-button" ng-click="contactCtrl.openMenu($mdOpenMenu, $event)">
 								<i class="material-icons">more_vert</i>
 							</md-button>
-							<md-menu-content  width="4">
+							<md-menu-content >
 								<md-menu-item>
 									<md-button>
 										Delete Contact
