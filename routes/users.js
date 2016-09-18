@@ -8,6 +8,15 @@ userRouter.use(function(req,res,next){
 	}
 	next();
 });
+userRouter.get('/contacts',function(req,res){
+	if(req.user){
+		var contacts = require('../public/contacts.json');
+		res.send(contacts);
+	}
+	else{
+		res.send({status:'FAILED'});	
+	}
+});
 userRouter.get('/authenticate',function(req,res){
 	if(req.user){
 		res.send({status:'SUCCESS',user:req.user});
