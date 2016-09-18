@@ -11,8 +11,11 @@ angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.
                 	path: "/register",
                     templateUrl:"templates/pages/login.html",
                     controller:'regController'
-                });
-                $locationProvider.html5Mode(true);
+                  })
+               .when('/user/contacts',{
+                   templateUrl:"templates/pages/contacts.html",
+                     controller:'contactsController'
+                  });
             }])
 	 .controller('mainCntrl',['$routeParams',function($routeParams)
     {
