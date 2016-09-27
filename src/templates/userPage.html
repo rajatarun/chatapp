@@ -1,3 +1,42 @@
-<div layout="column">
-	
+
+<div ng-controller="UserController" layout="column" style="height: 500px;" >
+
+  <section layout="row" flex>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left"
+                md-disable-backdrop md-whiteframe="4">
+
+      <md-toolbar class="md-theme-indigo" layout="row">
+        <h1 class="md-toolbar-tools">chat</h1>
+        <md-button ng-click="toggleLeft()" layout-align="end center" class="md-icon-button">
+          <i class="material-icons">&#xE5CD;</i>
+        </md-button>
+        
+      </md-toolbar>
+
+      <md-content layout-margin>
+        
+        <div layout="row" layout-align="end end">
+        <textarea placeholder="please enter your chat"> </textarea>
+        <md-button class="md-primary md-fab">
+           <md-icon class="material-icons">&#xE163;</md-icon>
+          </md-button>
+        </div>
+      </md-content>
+
+    </md-sidenav>
+
+    <md-content flex layout-padding>
+
+      <div layout="column" layout-align="top center">
+          <md-button ng-click="toggleLeft()" class="md-raised">
+            open chat
+          </md-button>
+
+      </div>
+
+    </md-content>
+
+  </section>
+
 </div>
