@@ -1,4 +1,4 @@
-angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.header', 'app.login', 'app.register', 'app.user.main.page','app.user.contacts'])
+angular.module('app',['ngMaterial','ngAnimate','ngRoute','ngMessages','app.chat.header', 'app.login', 'app.register', 'app.user.main.page','app.user.contacts','app.user.page'])
     .config(['$routeProvider','$locationProvider',
         function($routeProvider, $locationProvider) {
             $routeProvider
