@@ -1,8 +1,8 @@
 var app = angular.module('app.user.main.page',['app.http.service']);
 app.controller('UserController',UserController);
 
-	UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser'];
-	function UserController($rootScope,$window,$scope, $location, httpUser){
+	UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav'];
+function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav){
 		init();
 
 		function init(){
@@ -16,4 +16,12 @@ app.controller('UserController',UserController);
 			});
 			
 		}
+		$scope.toggleLeft = buildToggler('left');
+	    $scope.toggleRight = buildToggler('right');
+
+	    function buildToggler(componentId) {
+	      return function() {
+	        $mdSidenav(componentId).toggle();
+	      }
+	    }
 	};

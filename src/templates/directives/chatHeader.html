@@ -5,6 +5,7 @@
           <span>Smiley Chat</span>
         </h2>
         <md-button ng-if="userName">{{userName}}</md-button>
+        <md-menu>
         <md-button ng-if="userName" class="md-icon-button" style="height: 4rem;width: 4rem;">
         <img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 100%;width: 100%;">
         </md-button>
@@ -16,6 +17,7 @@
          <md-icon class="material-icons">&#xE7FE;</md-icon> 
          <span> register</span>
         </md-button>
+        </md-menu>
         <span flex-gt-sm="4"></span>
       </div>
     </md-toolbar>

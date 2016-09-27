@@ -2,6 +2,7 @@
 <head>
 	<base href="/">
 <!-- inject:css -->
+<link rel="stylesheet" type="text/css" href="styles.css">
 <!-- endinject -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -9,10 +10,15 @@
 <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
 <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="lib/angular-material-icons/angular-material-icons.css" />
+<link rel="stylesheet" href="lib/animate.css/animate.css" />
 <!-- endbower -->
 <script src="https://use.typekit.net/tkj4khh.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script>
 </head>
 <body ng-app='app'>
 	<chat-header></chat-header>
@@ -27,6 +33,8 @@
 		<a href="/auth/facebook"><i class="fa fa-facebook"></i></a>
 	</li>
 </ul> -->
+
+
 <!-- bower:js -->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/meld/meld.js"></script>
@@ -39,17 +47,21 @@
 <script src="lib/angular-messages/angular-messages.js"></script>
 <script src="lib/angular-material/angular-material.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-socket-io/socket.js"></script>
+<script src="lib/angular-material-icons/angular-material-icons.min.js"></script>
 <!-- endbower -->
 
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <!-- inject:js -->
+<script src="/js/dep.js"></script>
 <script src="/js/controller/contacts.js"></script>
 <script src="/js/controller/dep.js"></script>
 <script src="/js/controller/login.js"></script>
 <script src="/js/controller/registration.js"></script>
 <script src="/js/controller/user.js"></script>
+<script src="/js/controller/userCtrl.js"></script>
 <script src="/js/directives/chatHeader.js"></script>
 <script src="/js/services/httpService.js"></script>
 <!-- endinject -->
