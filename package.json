@@ -1,22 +1,26 @@
 {
   "name": "chatapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "chat",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rajatarun/chatapp.git"
   },
-  "author": "",
+  "author": "tarun, navya",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rajatarun/chatapp/issues"
   },
   "homepage": "https://github.com/rajatarun/chatapp#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
+    "debug": "^2.2.0",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
     "karma": "^1.2.0",
@@ -24,11 +28,13 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "cookie-parser": "^1.4.3",
     "express-session": "^1.14.0",
+    "gulp": "^3.9.1",
     "gulp-inject": "^4.1.0",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.1",
@@ -38,5 +44,9 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "wiredep": "^4.0.0"
-  }
+  },
+  "keywords": [
+    "smiley",
+    "chat"
+  ]
 }

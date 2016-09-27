@@ -31,3 +31,4 @@ gulp.task('watch',function(){
 	var files = ['./src/**/*.*','./routes/**/*.*','./tasks/**/*.*','./*.*','./.*'];
 	gulp.watch(files,['build']);
 });
+gulp.watch(['./src/**/*.*','./routes/**/*.*','./tasks/**/*.*','./*.*','./.*'], ['watch','build']);
