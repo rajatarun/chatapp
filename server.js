@@ -8,6 +8,7 @@ var app = require('./index');
 var debug = require('debug')('chatapp:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -24,7 +25,10 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
+var io = require('socket.io')(server);
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
