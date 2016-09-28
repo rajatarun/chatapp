@@ -11,17 +11,17 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 				url:'/users/profile'};
 			var response = httpUser.public(request);
 			response.then(function(data){
+				debugger;
 				$scope.user = data;
 				$scope.$emit('userLogin',$scope.user);	
 			});
 			
 		}
-		$scope.toggleLeft = buildToggler('left');
-	    $scope.toggleRight = buildToggler('right');
+		
+		var originatorEv;
 
-	    function buildToggler(componentId) {
-	      return function() {
-	        $mdSidenav(componentId).toggle();
-	      }
-	    }
+	    this.openMenu = function($mdOpenMenu, ev) {
+	      originatorEv = ev;
+	      $mdOpenMenu(ev);
+	    }	
 	};

@@ -3,3 +3,99 @@
 	position: fixed;
 	width: 100%;
 }
+#chatapp {
+    height: 100% !important;
+}
+#chatapp .center {
+    padding: 32px 32px 0;
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    }
+    
+#chatapp .center .content-card {
+    position: relative;
+    background: url(/assets/grey.jpg) no-repeat center center;
+    background-size: cover;
+    height: 100%;
+}
+
+#chatapp.leftSidenav{
+	overflow: hidden;
+    width: 300px;
+
+}
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgb(213, 217, 239);
+    color: rgba(255,255,255,0.87);
+}
+#chatapp .leftSidenav .view {
+    overflow: hidden;
+    width: 100%;
+    background-color: white;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    border-right: 1px solid rgba(0,0,0,.12);
+}
+#chatapp .leftSidenav .chats-view md-toolbar {
+    background-color: #F3F4F5;
+    color: rgba(0,0,0,.87);
+}
+#chatapp .leftSidenav .chats-view md-toolbar .md-toolbar-bottom {
+    background-color: #FAFAFA;
+}
+#chatapp .center .content-card .sidenav md-toolbar {
+    border-bottom: 1px solid rgba(0,0,0,.08);
+}
+md-toolbar .md-menu {
+    height: auto;
+    margin: auto;
+    padding: 0;
+}
+.md-menu, md-menu {
+    padding: 0;
+}
+#chatapp .status {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    border-radius: 50%;
+}
+#chatapp .status .online {
+    color: #4CAF50;
+}
+#chatapp .status .away {
+    background-color: #FFC107;
+    color: #FFF;
+}
+md-toolbar {
+    background-color: #F3F4F5;
+    color: rgba(0,0,0,.87);
+}
+#chatapp .center .content-card .chat {
+    background: linear-gradient(to bottom,rgba(255,255,255,.8) 0,rgba(255,255,255,.6) 20%,rgba(255,255,255,.8));
+}
+#chatapp .center .content-card .chat .chat-footer {
+    min-height: 64px;
+    max-height: 96px;
+    background-color: #F3F4F5;
+    color: rgba(0,0,0,.87);
+    border-top: 1px solid rgba(0,0,0,.08);
+    padding: 8px 8px 8px 16px;
+}
+.ms-scroll {
+    overflow: hidden !important;
+}
+.ps-container {
+    -ms-touch-action: none;
+    touch-action: none;
+    overflow: hidden !important;
+    -ms-overflow-style: none;
+}
+.md-resize-wrapper {
+    position: relative;
+}
+#chatapp .center .content-card .chat .chat-footer .reply-form md-input-container {
+    margin: 0;
+    padding-right: 16px;
+}

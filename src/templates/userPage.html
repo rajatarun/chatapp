@@ -1,80 +1,65 @@
-
-<!-- 
-<div ng-controller="UserController" layout="column" style="height: 500px;" >
-
-  <section layout="row" flex>
-
-    <md-sidenav class="md-sidenav-left" md-component-id="left"
-                md-disable-backdrop md-whiteframe="4">
-
-      <md-toolbar class="md-theme-indigo" layout="row">
-        <h1 class="md-toolbar-tools">chat</h1>
-        <md-button ng-click="toggleLeft()" layout-align="end center" class="md-icon-button">
-          <i class="material-icons">&#xE5CD;</i>
-        </md-button>
-        
-      </md-toolbar>
-
-      <md-content layout-margin>
-        
-        <div layout="row" layout-align="end end">
-        <textarea placeholder="please enter your chat"> </textarea>
-        <md-button class="md-primary md-fab">
-           <md-icon class="material-icons">&#xE163;</md-icon>
-          </md-button>
-        </div>
-      </md-content>
-
-    </md-sidenav>
-
-    <md-content flex layout-padding>
-
-      <div layout="column" layout-align="top center">
-          <md-button ng-click="toggleLeft()" class="md-raised">
-            open chat
-          </md-button>
-
-      </div>
-
-    </md-content>
-
-  </section>
-
-</div> -->
-
-  <div layout="row"  ng-controller="contactsController as contactCtrl">
-    <div flex="25" layout-margin>
-      <md-button layout="column" class="md-primary md-material-icons"><md-icon class="material-icons">&#xE7FE;</md-icon></md-button>
-      <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-2dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-list>
-          <md-list-item>
-            <a>
-              <md-item-content  md-ink-ripple layout="row" layout-align="start center">
-                <div class="inset">
-                  <h4 class=".md-subhead">Contacts</h4>
-                </div>
-              </md-item-content>
-            </a>
-          </md-list-item>
-          <md-list-item >
-            <a>
-              <md-item-content  md-ink-ripple layout="row" layout-align="start center">
-                <div class="inset">
-                  <h4 class=".md-subhead">Frequent Contacts</h4>
-                </div>
-              </md-item-content>
-            </a>
-          </md-list-item>
-        </md-list>
-      </md-sidenav>
-    </div>
-    <div  class="footer" layout="row" layout-align="start start">
-
-      <md-input-container flex-offset="35" flex="55">
-         <input type="text" placeholder="type to chat" />
-      </md-input-container>
-       <md-button layout-align="center center" class="md-primary md-fab">
-           <md-icon class="material-icons">&#xE163;</md-icon>
-          </md-button>
-    </div>
-  </div>
+<md-content ng-controller="UserController as ctrl">
+	<div id="chatapp">
+		<div class="center">
+			<div class="content-card" flex style="overflow:hidden;" layout="row">
+			 <md-sidenav class="sidenav leftSidenav"   md-is-locked-open="$mdMedia('gt-md')">
+			 	<div class="view chats-view">
+			 		<md-toolbar class="md-tall md-default-theme _md-toolbar-transitions">
+				 		<div class="md-toolbar-tools md-toolbar-top">
+				 			<i class="material-icons" style="font-size:36px;height:80%;">&#xE55A;</i>
+				 			<md-menu class="md-menu">
+				 			<md-icon class="material-icons status online" ng-click="ctrl.openMenu($mdOpenMenu, $event)">done</md-icon>
+				 			<md-menu-content width="4">
+					        <md-menu-item>
+					          <md-button >
+					          	<div layout-align="center center">
+					            <i class="material-icons status away">query_builder</i>
+					            </div>
+					          </md-button>
+					        </md-menu-item>
+					        <md-menu-item>
+					          <md-button>
+					            <md-icon md-svg-icon="call:voicemail"></md-icon>
+					            Check voicemail
+					          </md-button>
+					        </md-menu-item>
+					        <md-menu-divider></md-menu-divider>
+					        <md-menu-item>
+					          <md-button ng-click="ctrl.toggleNotifications()">
+					            <md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
+					            {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+					          </md-button>
+					        </md-menu-item>
+					      </md-menu-content>
+				 			</md-menu>
+				 		</div>
+				 		<div class="md-toolbar-tools md-toolbar-bottom">
+				 		
+				 		</div>
+			 		</md-toolbar>
+			 	</div>
+			 </md-sidenav>
+			<div class="chat" layout="column" flex>
+				<md-toolbar class=" md-default-theme _md-toolbar-transitions">
+				 		<div class="md-toolbar-tools md-toolbar-top">
+				 			<i class="material-icons" style="font-size:36px;height:80%;">&#xE55A;</i>
+				 			<md-menu class="md-menu">
+				 			<md-icon class="material-icons status online" ng-click="ctrl.openMenu($mdOpenMenu, $event)">done</md-icon>
+				 			</md-menu>
+				 			</div>
+				</md-toolbar>
+				<md-content class="chat-content ms-scroll ps-container" flex>
+				</md-content>
+					<div class="chat-footer " layout="row" layout-align="center center" >
+					<form class="reply-form" layout="row" layout-align="start center">
+					<md-input-container  md-no-float>
+						<textarea  class="md-resize-wrapper" placeholder="type your text and hit enter"></textarea>
+					</md-input-container>
+					</form>
+					 </div>
+				
+			</div>
+			</div>
+		</div>
+	</div>
+</md-content>
