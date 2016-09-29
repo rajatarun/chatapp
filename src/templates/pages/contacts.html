@@ -3,10 +3,10 @@
 			<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-2dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 				<md-list>
 					<md-list-item>
-						<a>
+						<a ng-href="{{userHomePage}}">
 							<md-item-content  md-ink-ripple layout="row" layout-align="start center">
 								<div class="inset">
-									<h4 class=".md-subhead">Contacts</h4>
+									<h4 class=".md-subhead">Home</h4>
 								</div>
 							</md-item-content>
 						</a>
@@ -26,10 +26,18 @@
 		<div flex="70" layout-margin>
 			<md-card>
 				<md-toolbar  md-scroll-shrink>	
-				<span flex></span>
-				<h1 class=".md-display-1" layout-margin>
+				
+				<div layout="row" layout-margin>
+				<!-- <span flex></span> -->
+				<h1 class=".md-display-1" flex="90" layout-margin >
 					All Contacts
-				</h1>	
+					
+				</h1>
+				<md-button class="md-icon-button" flex="10" ng-click="showPrompt($event)">
+				<!-- For modern browsers. -->
+					<i class="material-icons btn1">add_circle</i>
+				</md-button>	
+				</div>
 				</md-toolbar>
 				<md-list>
 					<br>

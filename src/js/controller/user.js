@@ -18,7 +18,12 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 		}
 		$scope.toggleLeft = buildToggler('left');
 	    $scope.toggleRight = buildToggler('right');
-
+	    $scope.sendMessage = function(){
+	    	socket.emit('Admin',{
+	    		personId:'a12d',
+	    		message:$scope.message
+	    	});
+	    }
 	    function buildToggler(componentId) {
 	      return function() {
 	        $mdSidenav(componentId).toggle();

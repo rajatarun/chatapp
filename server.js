@@ -29,6 +29,10 @@ var io = require('socket.io')(server);
 io.on('connection', function(socket){
   console.log('a user connected');
 });
+io.on('Admin',function(socket,message){
+  console.log(socket);
+  console.log(message);
+});
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

@@ -51,7 +51,7 @@
             <a>
               <md-item-content  md-ink-ripple layout="row" layout-align="start center">
                 <div class="inset">
-                  <h4 class=".md-subhead">Contacts</h4>
+                  <a href="/#/user/contacts"><h4 class=".md-subhead">Contacts</h4></a>
                 </div>
               </md-item-content>
             </a>
@@ -71,9 +71,9 @@
     <div  class="footer" layout="row" layout-align="start start">
 
       <md-input-container flex-offset="35" flex="55">
-         <input type="text" placeholder="type to chat" />
+         <input type="text" ng-model ="message" placeholder="type to chat" />
       </md-input-container>
-       <md-button layout-align="center center" class="md-primary md-fab">
+       <md-button layout-align="center center" ng-click="sendMessage()" class="md-primary md-fab">
            <md-icon class="material-icons">&#xE163;</md-icon>
           </md-button>
     </div>
