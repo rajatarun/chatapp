@@ -92,9 +92,7 @@ md-toolbar {
     overflow: hidden !important;
     -ms-overflow-style: none;
 }
-.md-resize-wrapper {
-    position: relative;
-}
+
 #chatapp .center .content-card .chat .chat-footer .reply-form md-input-container {
     margin: 0;
     padding-right: 16px;

@@ -1,10 +1,11 @@
+var socket =io();
 var app = angular.module('app.user.main.page',['app.http.service']);
 app.controller('UserController',UserController);
 
-	UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav'];
-function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav){
+UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile'];
+function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile){
 		init();
-
+		var msg = '';
 		function init(){
 			var request = {
 				method:'get',
@@ -24,4 +25,21 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	      originatorEv = ev;
 	      $mdOpenMenu(ev);
 	    }	
+	    $scope.chat = null;
+	    this.submit = function(socket){
+	    	debugger;
+	    	 socket =io();
+	    	socket.emit('chat_message', $scope.chat);
+	    		$scope.chat = '';
+	    		
+	    		debugger;
+		    	socket.on('chat_message', function(msg){
+		    		var html='<div>'+msg+'</div>',
+		    	    el = document.getElementById('messages');
+		    		angular.element(el).append( $compile(html)($scope))
+		    	  });
+		    	return false;
+	    	};
+	    	
+	    
 	};

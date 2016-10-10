@@ -27,7 +27,9 @@ var server = http.createServer(app);
  */
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
-  console.log('a user connected');
+socket.on('chat_message', function(msg){
+	  io.emit('chat_message', msg);
+	  });
 });
 server.listen(port);
 server.on('error', onError);
