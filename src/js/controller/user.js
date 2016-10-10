@@ -5,6 +5,7 @@ app.controller('UserController',UserController);
 UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile'];
 function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile){
 		init();
+		$scope.msg = null;
 		var msg = '';
 		function init(){
 			var request = {
@@ -35,7 +36,8 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    		
 	    		debugger;
 		    	socket.on('chat_message', function(msg){
-		    		var html='<div>'+msg+'</div>',
+		    		$scope.msg = msg;
+		    		var html='<div id="msg">'+msg+'</div>',
 		    	    el = document.getElementById('messages');
 		    		angular.element(el).append( $compile(html)($scope))
 		    	  });
