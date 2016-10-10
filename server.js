@@ -27,14 +27,12 @@ var server = http.createServer(app);
  */
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
+	socket.emit('news', { hello: 'world' });
 socket.on('chat_message', function(msg){
 	  io.emit('chat_message', msg);
 	  });
 });
-io.on('Admin',function(socket,message){
-  console.log(socket);
-  console.log(message);
-});
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

@@ -51,13 +51,13 @@
 				<md-content id="messages" class="chat-content ms-scroll ps-container" flex>
 				</md-content>
 					<div id="chat-message" class="chat-footer " layout="row" flex layout-padding>
-					<form class="reply-form" layout="row" flex="100">
+					<form class="reply-form" layout="row" flex="100" ng-submit="ctrl.submit()" >
 					<md-input-container  md-no-float flex="100">
 					
-						<textarea ng-model="chat" placeholder="type your text and hit enter" maxlength="200"></textarea>
+						<textarea ng-model="chat" ng-keyup="$event.keyCode == 13 && ctrl.submit()" placeholder="type your text and hit enter" maxlength="200"></textarea>
 					</md-input-container>
 					<md-input-container>
-						<md-button ng-click="ctrl.submit()"><md-icon class="material-icons md-primary">send</md-icon></md-button>
+						<md-button type="submit"><md-icon class="material-icons md-primary">send</md-icon></md-button>
 					</md-input-container>
 					</form>
 					 </div>

@@ -31,6 +31,9 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    this.submit = function(socket){
 	    	debugger;
 	    	 socket =io();
+	    	 socket.on('news', function (data) {
+	    		    console.log(data);
+	    	 });
 	    	socket.emit('chat_message', $scope.chat);
 	    		$scope.chat = '';
 	    		
