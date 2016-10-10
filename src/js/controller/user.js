@@ -18,6 +18,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			});
 			
 		}
+
 		
 		var originatorEv;
 

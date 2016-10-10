@@ -31,6 +31,10 @@ socket.on('chat_message', function(msg){
 	  io.emit('chat_message', msg);
 	  });
 });
+io.on('Admin',function(socket,message){
+  console.log(socket);
+  console.log(message);
+});
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
