@@ -1,7 +1,7 @@
 <md-content ng-controller="UserController as ctrl">
 	<div id="chatapp">
 		<div class="center">
-			<div class="content-card" flex style="overflow:hidden;" layout="row">
+			<div class="content-card"  style="overflow:hidden;" layout="row">
 			 <md-sidenav class="sidenav leftSidenav"   md-is-locked-open="$mdMedia('gt-md')">
 			 	<div class="view chats-view">
 			 		<md-toolbar class="md-tall md-default-theme _md-toolbar-transitions">
@@ -48,7 +48,8 @@
 				 			
 				 			</div>
 				</md-toolbar>
-				<md-content id="messages" class="chat-content ms-scroll ps-container" flex>
+				<md-content id="messagesContainer" class="chat-content ms-scroll ps-container" flex>
+				<ul id="messages" layout="column" flex></ul>
 				</md-content>
 					<div id="chat-message" class="chat-footer " layout="row" flex layout-padding>
 					<form class="reply-form" layout="row" flex="100" ng-submit="ctrl.submit()" >
