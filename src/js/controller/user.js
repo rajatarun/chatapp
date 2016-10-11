@@ -53,7 +53,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    		var chatMessage = $scope.chat;
 	    		$scope.chat = '';
 	    		$scope.icon = $scope.user.photos;
-	    		var html='<li id="msgleft"><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('embed')(chatMessage)+'</li>',
+	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage)+'</li>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
 		    	socket.on('msg_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
@@ -67,7 +67,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    				}
 	    			});
 		    		incomingMessage.then(function(){
-		    			var html='<li id="msgright">'+msg+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
+		    			var html='<li id="msgright" class="md-display-1"  >'+$filter('imagify')(msg)+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
 		    	    	el = document.getElementById('messages');
 		    			angular.element(el).append( $compile(html)($scope));
 		    			
