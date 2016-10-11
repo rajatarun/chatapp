@@ -1,7 +1,9 @@
 
 /* GET users listing. */
+var watRouter = require('watson-developer-cloud');
 var router = function(express){
 var userRouter = express.Router();
+
 userRouter.use(function(req,res,next){
 	if(!req.user){
 		res.redirect('/');
@@ -24,6 +26,28 @@ userRouter.get('/authenticate',function(req,res){
 	else{
 		res.send({status:'FAILED'});	
 	}
+});
+userRouter.get('/sentiment',function(req,res){
+	var watRouter = require('watson-developer-cloud');
+	var alchemy_language = watRouter.alchemy_language({
+		  api_key: '5eebfd52e3328db5a637a148cef169afb6ccb6ca'
+		});
+	var alchemy = {};
+	var parameters = {
+			 text: 'I love apples! I do not like bananas.',
+			  targets: 'apples|bananas'
+			};
+	if(req.user){
+		alchemy_language.sentiment(parameters, function (err, response) {
+					  if (err)
+						    console.log('error:', err);
+						  else{
+							  alchemy = JSON.stringify(response, null, 2);
+							console.log(alchemy)  
+						  }
+						});
+	}
+	
 });
 userRouter.get('/', function(req, res, next) {
 	res.redirect('/#users/'+req.user.name.givenName);

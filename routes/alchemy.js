@@ -1,5 +1,6 @@
 
 var Watrouter = function(watson){
+	console.log('hello')
 	var alchemy_language = watson.alchemy_language({
 		  api_key: '5eebfd52e3328db5a637a148cef169afb6ccb6ca'
 		});

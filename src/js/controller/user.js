@@ -2,25 +2,31 @@ var socket =io();
 var app = angular.module('app.user.main.page',['app.http.service']);
 app.controller('UserController',UserController);
 
-UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile'];
-function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile){
+UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile','$filter'];
+function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile, $filter){
 		init();
+		$scope.var =":smile:";
 		$scope.msg = null;
 		var msg = '';
 		function init(){
 			var request = {
 				method:'get',
 				url:'/users/profile'};
+			
 			var response = httpUser.public(request);
+			
 			response.then(function(data){
 				debugger;
 				$scope.user = data;
 				$scope.$emit('userLogin',$scope.user);	
 			});
 			
+			
 		}
-
-		
+		var request1 = {
+				method:'get',
+				url:'/users/sentiment'};
+		var Sentiresponse = httpUser.public(request1);
 		var originatorEv;
 
 	    this.openMenu = function($mdOpenMenu, ev) {
@@ -30,6 +36,9 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    $scope.chat = null;
 	    this.submit = function(socket){
 	    	debugger;
+	    	Sentiresponse.then(function(response){
+				debugger;
+			});
 	    	 socket =io();
 	    	 if($scope.user.name.givenName === 'tarun'){
 	    	 	$scope.activeFrnd = 'sanjana';
@@ -44,7 +53,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    		var chatMessage = $scope.chat;
 	    		$scope.chat = '';
 	    		$scope.icon = $scope.user.photos;
-	    		var html='<li id="msgleft"><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+chatMessage+'</li>',
+	    		var html='<li id="msgleft"><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('embed')(chatMessage)+'</li>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
 		    	socket.on('msg_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
