@@ -23,10 +23,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			
 			
 		}
-		var request1 = {
-				method:'get',
-				url:'/users/sentiment'};
-		var Sentiresponse = httpUser.public(request1);
+		
 		var originatorEv;
 
 	    this.openMenu = function($mdOpenMenu, ev) {
@@ -34,11 +31,29 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	      $mdOpenMenu(ev);
 	    }	
 	    $scope.chat = null;
+	    this.typing =function(socket){
+	    	socket = io();
+	    	if($scope.user.name.givenName === 'tarun'){
+	    	 	$scope.activeFrnd = 'sanjana';
+	    	}
+	    	else{
+	    	 	$scope.activeFrnd = 'tarun';	
+	    	}
+	    	socket.emit('chat_message', {typing:true,from:$scope.user.name,to:$scope.activeFrnd});
+	    	if($scope.user.name.givenName === 'tarun'){
+	    	 	$scope.activeFrnd = 'sanjana';
+	    	 }
+	    	 else{
+	    	 	$scope.activeFrnd = 'tarun';	
+	    	 }
+	    	socket.on('msg_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
+	    		if(msg.typing){
+	    			$scope.isTyping = true;
+	    		}
+		    });
+	    };
 	    this.submit = function(socket){
-	    	debugger;
-	    	Sentiresponse.then(function(response){
-				debugger;
-			});
+	    	
 	    	 socket =io();
 	    	 if($scope.user.name.givenName === 'tarun'){
 	    	 	$scope.activeFrnd = 'sanjana';
@@ -49,15 +64,23 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    	 socket.on('news', function (data) {
 	    		    console.log(data);
 	    	 });
-	    	socket.emit('chat_message', {msg:$scope.chat,from:$scope.user.name,to:$scope.activeFrnd});
+	    	var request1 = {
+				method:'post',
+				url:'/users/sentiment',
+				params:{text:$scope.chat}};
+			var Sentiresponse = httpUser.public(request1);
+			var sentiment = '';
+	    	Sentiresponse.then(function(response){
+				sentiment = response.docSentiment.type;
+				  	socket.emit('chat_message', {msg:$scope.chat,from:$scope.user.name,to:$scope.activeFrnd});
 	    		var chatMessage = $scope.chat;
 	    		$scope.chat = '';
 	    		$scope.icon = $scope.user.photos;
-	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage)+'</li>',
+	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+(sentiment==="positive"?' :blush:':' :disappointed:'))+'</li>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
 		    	socket.on('msg_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
-		    		$scope.msg = msg;
+		    		$scope.msg = msg.msg?msg.msg:'';
 		    		var incomingMessage = new Promise(function(resolve,reject){
 	    				if(msg){
 	    					resolve();
@@ -73,6 +96,8 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 		    			
 		    		});
 		    	  });
+			});
+	    	
 		    	return false;
 	    	};
 	    	

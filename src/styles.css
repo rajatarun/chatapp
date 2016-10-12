@@ -12,6 +12,10 @@ body{
 #chatapp {
     height: 100% !important;
 }
+.bottom{
+    bottom: 120;
+    position: fixed;
+}
 #chatapp .center {
     padding: 32px 32px 0;
     max-width: 1400px;

@@ -50,12 +50,14 @@
 				</md-toolbar>
 				<md-content id="messagesContainer" class="chat-content ms-scroll ps-container" flex>
 				<ul id="messages" layout="column" flex></ul>
+				<h6 ng-show="isTyping" class="bottom">{{activeFrnd}}  typing.....</h6>
 				</md-content>
+
 					<div id="chat-message" class="chat-footer " layout="row" flex layout-padding>
 					<form class="reply-form" layout="row" flex="100" ng-submit="ctrl.submit()" >
 					<span emoji-picker="chat" placement="top" title="Emoji" recent-limit="20" ></span>
 					<md-input-container  md-no-float flex="80">
-						<textarea ng-model="chat" ng-keyup="$event.keyCode == 13 && ctrl.submit()" placeholder="type your text and hit enter" maxlength="200"></textarea>
+						<textarea ng-model="chat" ng-change="ctrl.typing()" ng-keyup="$event.keyCode == 13 && ctrl.submit()" placeholder="type your text and hit enter" maxlength="200"></textarea>
 					</md-input-container>
 					<md-input-container>
 						<md-button type="submit"><md-icon class="material-icons md-primary">send</md-icon></md-button>
