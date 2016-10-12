@@ -34,19 +34,26 @@
 				 			</md-menu>
 				 		</div>
 				 		<div class="md-toolbar-tools md-toolbar-bottom">
-				 		
+				 		 
 				 		</div>
 			 		</md-toolbar>
 			 	</div>
+			 	<div layout="column" class="md-tall">
+			 	<md-menu class="md-menu">
+			 	<md-menu-content width="4">
+				 <md-menu-item>
+			 	<md-button class="md-no-ink" ng-click="ctrl.showChat()">{{activeFrnd}}</md-button>
+			 	</md-menu-item>
+			 	</md-menu-content>
+			 	</md-menu>
+			 	</div>
 			 </md-sidenav>
-			<div class="chat" layout="column" flex>
+			<div class="chat" ng-show="showChat" layout="column" flex>
 				<md-toolbar class=" md-default-theme _md-toolbar-transitions">
-				 		<div class="md-toolbar-tools md-toolbar-top">
-				 			<i class="material-icons" style="font-size:36px;height:80%;">&#xE55A;</i>
-				 			
-				 			<md-icon class="material-icons status online" ng-click="ctrl.openMenu($mdOpenMenu, $event)">done</md-icon>
-				 			
-				 			</div>
+			 		<div class="md-toolbar-tools md-toolbar-top">
+	 					<i class="material-icons" style="font-size:36px;height:80%;">&#xE55A;</i>
+			 			<md-icon class="material-icons status online" ng-click="ctrl.openMenu($mdOpenMenu, $event)">done</md-icon>
+				 	</div>
 				</md-toolbar>
 				<md-content id="messagesContainer" class="chat-content ms-scroll ps-container" flex>
 				<ul id="messages" layout="column" flex></ul>

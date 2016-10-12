@@ -7,6 +7,8 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 		init();
 		$scope.var =":smile:";
 		$scope.msg = null;
+		$scope.showChat = false;
+		$scope.activeFrnd = 'tarun';
 		var msg = '';
 		function init(){
 			var request = {
@@ -23,7 +25,9 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			
 			
 		}
-		
+		this.showChat = function(){
+			$scope.showChat = true;
+		}
 		var originatorEv;
 
 	    this.openMenu = function($mdOpenMenu, ev) {
@@ -61,18 +65,24 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    	 else{
 	    	 	$scope.activeFrnd = 'tarun';	
 	    	 }
-	    	 socket.on('news', function (data) {
-	    		    console.log(data);
-	    	 });
+	    	 
 	    	var request1 = {
 				method:'post',
 				url:'/users/sentiment',
 				params:{text:$scope.chat}};
 			var Sentiresponse = httpUser.public(request1);
+			var request2 = {
+					method:'post',
+					url:'/users/place',
+					params:{text:$scope.chat}};
+			var Placeresponse = httpUser.public(request2);
 			var sentiment = '';
+			var places = null;
 			var sentimentResponse;
 			var chatMessage = $scope.chat;
+		
 	    	Sentiresponse.then(function(response){
+	    		
 	    		sentiment = response.docEmotions;
 	    		var smiley ='';
 	    		var mSmiley = '';
@@ -118,6 +128,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    			break;
 	    		
 	    		}
+	    		
 	    		socket.emit('chat_message', {msg:chatMessage+smiley,from:$scope.user.name,to:$scope.activeFrnd});
 	    		$scope.icon = $scope.user.photos;
 	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+smiley)+'</li>',

@@ -49,6 +49,27 @@ userRouter.post('/sentiment',function(req,res){
 	}
 	
 });
+userRouter.post('/place',function(req,res){
+	var watRouter = require('watson-developer-cloud');
+	var alchemy_language = watRouter.alchemy_language({
+		  api_key: '5eebfd52e3328db5a637a148cef169afb6ccb6ca'
+		});
+	var alchemy = {};
+	var parameters = {
+			 text: req.body.text
+			};
+	if(req.user){
+		alchemy_language.concepts(parameters, function (err, response) {
+			  if (err)
+				    console.log('error:', err);
+				  else{
+					  alchemy = JSON.stringify(response, null, 2);
+					console.log(alchemy);
+					res.send(alchemy);  
+				  	}
+		});
+	}
+});
 userRouter.get('/', function(req, res, next) {
 	res.redirect('/#users/'+req.user.name.givenName);
 });
