@@ -30,14 +30,11 @@ io.on('connection', function(socket){
 	socket.emit('news', { hello: 'world' });
   socket.on('chat_message', function(msg){
   console.log(msg);
-  if(msg.msg){
 	socket.broadcast.emit('msg_'+msg.to, msg);
-  }
-  else{
-   socket.broadcast.emit('msg_'+msg.to, msg); 
-  }
-	  });
-
+	});
+  socket.on('chat_typing', function(msg){
+    socket.broadcast.emit('typing_'+msg.to, msg);
+  });
 });
 
 server.listen(port);

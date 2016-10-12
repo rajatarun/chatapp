@@ -2,8 +2,8 @@ var socket =io();
 var app = angular.module('app.user.main.page',['app.http.service']);
 app.controller('UserController',UserController);
 
-UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile','$filter'];
-function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile, $filter){
+UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile','$filter','$q'];
+function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile, $filter,$q){
 		init();
 		$scope.var =":smile:";
 		$scope.msg = null;
@@ -39,14 +39,14 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    	else{
 	    	 	$scope.activeFrnd = 'tarun';	
 	    	}
-	    	socket.emit('chat_message', {typing:true,from:$scope.user.name,to:$scope.activeFrnd});
+	    	socket.emit('chat_typing', {typing:true,from:$scope.user.name,to:$scope.activeFrnd});
 	    	if($scope.user.name.givenName === 'tarun'){
 	    	 	$scope.activeFrnd = 'sanjana';
 	    	 }
 	    	 else{
 	    	 	$scope.activeFrnd = 'tarun';	
 	    	 }
-	    	socket.on('msg_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
+	    	socket.on('typing_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
 	    		if(msg.typing){
 	    			$scope.isTyping = true;
 	    		}
@@ -70,15 +70,18 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 				params:{text:$scope.chat}};
 			var Sentiresponse = httpUser.public(request1);
 			var sentiment = '';
+			var sentimentResponse;
+			var chatMessage = $scope.chat;
 	    	Sentiresponse.then(function(response){
-				sentiment = response.docSentiment.type;
-				  	socket.emit('chat_message', {msg:$scope.chat,from:$scope.user.name,to:$scope.activeFrnd});
-	    		var chatMessage = $scope.chat;
-	    		$scope.chat = '';
+	    		sentiment = response.docSentiment.type;
+	    		socket.emit('chat_message', {msg:chatMessage+(sentiment==="positive"?' :blush:':' :disappointed:'),from:$scope.user.name,to:$scope.activeFrnd});
 	    		$scope.icon = $scope.user.photos;
 	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+(sentiment==="positive"?' :blush:':' :disappointed:'))+'</li>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
+		    	});
+			
+	    		$scope.chat = '';
 		    	socket.on('msg_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
 		    		$scope.msg = msg.msg?msg.msg:'';
 		    		var incomingMessage = new Promise(function(resolve,reject){
@@ -90,13 +93,12 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    				}
 	    			});
 		    		incomingMessage.then(function(){
-		    			var html='<li id="msgright" class="md-display-1"  >'+$filter('imagify')(msg)+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
+		    			var html='<li id="msgright" class="md-display-1"  >'+$filter('imagify')(msg.msg)+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
 		    	    	el = document.getElementById('messages');
 		    			angular.element(el).append( $compile(html)($scope));
 		    			
 		    		});
 		    	  });
-			});
 	    	
 		    	return false;
 	    	};
