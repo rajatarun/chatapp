@@ -37,7 +37,7 @@ userRouter.post('/sentiment',function(req,res){
 			 text: req.body.text
 			};
 	if(req.user){
-		alchemy_language.sentiment(parameters, function (err, response) {
+		alchemy_language.emotion(parameters, function (err, response) {
 					  if (err)
 						    console.log('error:', err);
 						  else{

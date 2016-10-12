@@ -73,10 +73,54 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			var sentimentResponse;
 			var chatMessage = $scope.chat;
 	    	Sentiresponse.then(function(response){
-	    		sentiment = response.docSentiment.type;
-	    		socket.emit('chat_message', {msg:chatMessage+(sentiment==="positive"?' :blush:':' :disappointed:'),from:$scope.user.name,to:$scope.activeFrnd});
+	    		sentiment = response.docEmotions;
+	    		var smiley ='';
+	    		var mSmiley = '';
+	    		var	maxSmiley = sentiment.anger;
+	    		function max(sentiment){
+	    		if(maxSmiley == sentiment.anger){
+	    			mSmiley = 'anger';
+	    		}
+	    		if(maxSmiley < sentiment.joy){
+	    			maxSmiley = sentiment.joy;
+	    			mSmiley = 'joy';
+	    		}
+	    		else if(maxSmiley < sentiment.sadness){
+	    			maxSmiley = sentiment.sadness;
+	    			mSmiley = 'sadness';
+	    		}
+	    		else if(maxSmiley < sentiment.fear){
+	    			maxSmiley = sentiment.fear;
+	    			mSmiley = 'fear';
+	    		}
+	    		else if(maxSmiley < sentiment.disgust){
+	    			maxSmiley = sentiment.disgust;
+	    			mSmiley = 'disgust';
+	    		}
+	    		return mSmiley;
+	    		}
+	    		max(sentiment);
+	    		switch(mSmiley){
+	    		case 'anger':
+	    			smiley =':rage:';
+	    			break;
+	    		case 'joy':
+	    			smiley =':blush:';
+	    			break;
+	    		case 'sadness':
+	    			smiley =':disappointed:';
+	    			break;
+	    		case 'fear':
+	    			smiley =':cold_sweat:';
+	    			break;
+	    		case 'disgust':
+	    			smiley =':expressionless:';
+	    			break;
+	    		
+	    		}
+	    		socket.emit('chat_message', {msg:chatMessage+smiley,from:$scope.user.name,to:$scope.activeFrnd});
 	    		$scope.icon = $scope.user.photos;
-	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+(sentiment==="positive"?' :blush:':' :disappointed:'))+'</li>',
+	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+smiley)+'</li>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
 		    	});
