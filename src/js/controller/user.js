@@ -9,7 +9,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 		
 		$scope.msg = null;
 		$scope.showChat = false;
-		$scope.activeFrnd = 'tarun';
+		$scope.activeFrnd = '';
 		var msg = '';
 		function init(){
 			var request = {
@@ -22,6 +22,12 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 				debugger;
 				$scope.user = data;
 				$scope.$emit('userLogin',$scope.user);	
+				  if($scope.user.name.givenName === 'tarun'){
+	    	 	$scope.activeFrnd = 'sanjana';
+			    	}
+			    else{
+			    	 	$scope.activeFrnd = 'tarun';	
+			    }
 			});
 			
 			
@@ -36,6 +42,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	      $mdOpenMenu(ev);
 	    }	
 	    $scope.chat = null;
+	  
 	    this.typing =function(socket){
 	    	socket = io();
 	    	if($scope.user.name.givenName === 'tarun'){
@@ -132,7 +139,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    		
 	    		socket.emit('chat_message', {msg:chatMessage+smiley,from:$scope.user.name,to:$scope.activeFrnd,time:date.toLocaleTimeString()});
 	    		$scope.icon = $scope.user.photos;
-	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+smiley)+'</li><sup>'+date.toLocaleTimeString()+'</sup>',
+	    		var html='<li id="msgleft" class="messages md-whiteframe-4dp layout-margin" ><md-whiteframe ><b>'+$filter('imagify')(chatMessage+'</b><span class="centersmiley">'+smiley+'</md-whiteframe></span>'+'<sup>'+date.toLocaleTimeString()+'</sup>')+'</li>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
 		    	});
@@ -149,7 +156,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    				}
 	    			});
 		    		incomingMessage.then(function(){
-		    			var html='<li id="msgright" class="md-display-1"  >'+$filter('imagify')(msg.msg)+msg.time+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
+		    			var html='<li id="msgright" class="messages md-whiteframe-4dp layout-margin" ><md-whiteframe >'+$filter('imagify')(msg.msg)+'</md-whiteframe><sup>'+date.toLocaleTimeString()+'</sup>'+'</li>',
 		    	    	el = document.getElementById('messages');
 		    			angular.element(el).append( $compile(html)($scope));
 		    			

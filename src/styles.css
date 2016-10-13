@@ -16,6 +16,13 @@ body{
     bottom: 120;
     position: fixed;
 }
+.emoji-picker{
+    margin-left: 0.5rem;
+    margin-bottom: -0.5rem;
+}
+.md-whiteframe-4dp{
+    background-color: white;
+}
 #chatapp .center {
     padding: 32px 32px 0;
     max-width: 1400px;
@@ -28,14 +35,16 @@ body{
     background-size: cover;
     height: 90%;
 }
-
+sup{
+    top:-0.1rem;
+    }
 #chatapp.leftSidenav{
 	overflow: hidden;
     width: 300px;
 
 }
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-    background-color: rgb(213, 217, 239);
+    background-color:#009688;
     color: rgba(255,255,255,0.87);
 }
 #chatapp .leftSidenav .view {
@@ -97,6 +106,7 @@ md-toolbar {
 #messagesContainer{
     max-height: 380px;
     overflow-y: scroll;
+    background-color: lightblue; 
 }
 
 #chatapp .center .content-card .chat .chat-footer .reply-form md-input-container {
@@ -105,23 +115,26 @@ md-toolbar {
    
 }
 #msgleft{
-	background-color: transparent;
 	width: 400px;
-    height: 80px;
-    padding: 2px 2px 2px 4px;
-    border-radius: 6px;
-	float: left;
-	
+    height: inherit;
+    padding: 1rem;
+	float: left;	
+    margin-top: 1rem;
+    border-radius: 1rem;
 }
 ul#messages{
     list-style-type: none;
 }
 #msgright{
-    background-color: transparent;
     width: 400px;
-    height: 80px;
-    padding: 2px 2px 2px 4px;
+    height: inherit;
+    padding: 1rem;
     border-radius: 6px;
+    float: left;
+    border-radius: 10px;
+    margin-top: 1rem;
+    align-self: flex-end;
+    margin-right: 3rem;
 }
 #msg::after {
     content: "";
