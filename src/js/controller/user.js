@@ -6,6 +6,7 @@ UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser
 function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile, $filter,$q){
 		init();
 		$scope.var =":smile:";
+		
 		$scope.msg = null;
 		$scope.showChat = false;
 		$scope.activeFrnd = 'tarun';
@@ -65,7 +66,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    	 else{
 	    	 	$scope.activeFrnd = 'tarun';	
 	    	 }
-	    	 
+	    	 var date = new Date();
 	    	var request1 = {
 				method:'post',
 				url:'/users/sentiment',
@@ -129,9 +130,9 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    		
 	    		}
 	    		
-	    		socket.emit('chat_message', {msg:chatMessage+smiley,from:$scope.user.name,to:$scope.activeFrnd});
+	    		socket.emit('chat_message', {msg:chatMessage+smiley,from:$scope.user.name,to:$scope.activeFrnd,time:date.toLocaleTimeString()});
 	    		$scope.icon = $scope.user.photos;
-	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+smiley)+'</li>',
+	    		var html='<li id="msgleft" class="md-display-1"  ><img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;">'+$filter('imagify')(chatMessage+smiley)+'</li><sup>'+date.toLocaleTimeString()+'</sup>',
 		    	el = document.getElementById('messages');
 		    	angular.element(el).append($compile(html)($scope));
 		    	});
@@ -148,7 +149,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    				}
 	    			});
 		    		incomingMessage.then(function(){
-		    			var html='<li id="msgright" class="md-display-1"  >'+$filter('imagify')(msg.msg)+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
+		    			var html='<li id="msgright" class="md-display-1"  >'+$filter('imagify')(msg.msg)+msg.time+'<img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 30px;width: 30px; padding-right="5px;"></li>',
 		    	    	el = document.getElementById('messages');
 		    			angular.element(el).append( $compile(html)($scope));
 		    			
