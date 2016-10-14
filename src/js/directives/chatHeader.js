@@ -14,7 +14,6 @@
 	chatHeaderController.$inject =['$rootScope','$scope', '$location','httpUser'];
 	function chatHeaderController($rootScope,$scope, $location, httpUser){
 		$scope.$on('userLogin',function(event,user){
-			debugger;
 			$scope.userName = user.displayName;
 			$scope.icon = user.photos;
 		});

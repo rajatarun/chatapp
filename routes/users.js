@@ -1,4 +1,5 @@
 
+
 /* GET users listing. */
 var watRouter = require('watson-developer-cloud');
 var router = function(express){
@@ -21,6 +22,7 @@ userRouter.get('/contacts',function(req,res){
 });
 userRouter.get('/authenticate',function(req,res){
 	if(req.user){
+		
 		res.send({status:'SUCCESS',user:req.user});
 	}
 	else{
@@ -77,6 +79,7 @@ userRouter.get('/', function(req, res, next) {
 // 	res.send(req.user);
 // });
 userRouter.get('/profile',function(req,res){
+	
 	res.send(req.user);
 });
 return userRouter;

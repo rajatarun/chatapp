@@ -41,7 +41,7 @@
 				</md-toolbar>
 				<md-list>
 					<br>
-					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList | limitTo:10" ng-if="contact.Name">
+					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList | limitTo:20" ng-if="contact.Name">
 						<md-checkbox class="md-accent" flex="5"></md-checkbox>
 						<p flex="20" >{{contact.Name}}</p>
 						<p flex="30" >{{contact['E-mail 1 - Value']}}</p>

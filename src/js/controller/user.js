@@ -19,7 +19,6 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			var response = httpUser.public(request);
 			
 			response.then(function(data){
-				debugger;
 				$scope.user = data;
 				$scope.$emit('userLogin',$scope.user);	
 				  if($scope.user.name.givenName === 'tarun'){
@@ -32,8 +31,9 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			
 			
 		}
-		this.showChat = function(){
+		this.showChat = function(contact){
 			$scope.showChat = true;
+			$scope.activeFrnd = contact.Name;
 		}
 		var originatorEv;
 
@@ -45,19 +45,9 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	  
 	    this.typing =function(socket){
 	    	socket = io();
-	    	if($scope.user.name.givenName === 'tarun'){
-	    	 	$scope.activeFrnd = 'sanjana';
-	    	}
-	    	else{
-	    	 	$scope.activeFrnd = 'tarun';	
-	    	}
+	    	
 	    	socket.emit('chat_typing', {typing:true,from:$scope.user.name,to:$scope.activeFrnd});
-	    	if($scope.user.name.givenName === 'tarun'){
-	    	 	$scope.activeFrnd = 'sanjana';
-	    	 }
-	    	 else{
-	    	 	$scope.activeFrnd = 'tarun';	
-	    	 }
+	    	
 	    	socket.on('typing_'+$scope.user.name.givenName.toLowerCase(), function(msg){	
 	    		if(msg.typing){
 	    			$scope.isTyping = true;
@@ -67,12 +57,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 	    this.submit = function(socket){
 	    	
 	    	 socket =io();
-	    	 if($scope.user.name.givenName === 'tarun'){
-	    	 	$scope.activeFrnd = 'sanjana';
-	    	 }
-	    	 else{
-	    	 	$scope.activeFrnd = 'tarun';	
-	    	 }
+	    	 
 	    	 var date = new Date();
 	    	var request1 = {
 				method:'post',
