@@ -4,7 +4,7 @@
 var watRouter = require('watson-developer-cloud');
 var router = function(express){
 var userRouter = express.Router();
-
+var google = require('../config/oauth.js')();
 userRouter.use(function(req,res,next){
 	if(!req.user){
 		res.redirect('/');
@@ -73,6 +73,9 @@ userRouter.post('/place',function(req,res){
 	}
 });
 userRouter.get('/', function(req, res, next) {
+	google.getContacts(function(result){
+		console.log(result);
+	})
 	res.redirect('/#users/'+req.user.name.givenName);
 });
 // userRouter.get('/:username',function(req,res){
