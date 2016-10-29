@@ -1,7 +1,7 @@
 var mongodb = require('mongodb').MongoClient;
 /* GET users listing. */
 var passport = require('passport');
-var router = function(express){
+var router = function(express,google){
 	var authRouter = express.Router();
 	authRouter.post('/signUp',function(req, res) {
 			console.log(req.body);
@@ -32,14 +32,23 @@ var router = function(express){
 	authRouter.get('/google/callback',passport.authenticate('google',{
 		successRedirect: '/users',
 		failure: '/error/'
-	}));
+	}),function(req,res){
+		console.log(req.originalUrl);
+	});
+	authRouter.get('/contacts',function(req,res){
+		var urlWithCode = req.originalUrl;
+		var idx = urlWithCode.lastIndexOf('code=');
+		var code = urlWithCode.substring(idx+5).replace('#','');
+		token = google.getToken(code,res);
+		console.log(token);
+	});
 	authRouter.get('/logout', function(req, res){
 		  req.logout();
 		  res.redirect('/');
 		});
 	authRouter.get('/google',passport.authenticate('google',{
 			scope: ['https://www.googleapis.com/auth/userinfo.profile',
-			'https://www.googleapis.com/auth/userinfo.email','https://www.google.com/m8/feeds']
+			'https://www.googleapis.com/auth/userinfo.email','https://www.google.com/m8/feeds','https://www.googleapis.com/auth/contacts']
 	}));
 	authRouter.get('/facebook/callback',passport.authenticate('facebook',{
 		successRedirect: '/users',

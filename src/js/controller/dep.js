@@ -18,7 +18,10 @@ angular.module('app',['ngMaterial','ngAnimate','ngSanitize','ngRoute','ngMessage
                 .when('/user/contacts',{
                     templateUrl:"templates/pages/contacts.html",
                     controller:'contactsController'
-                });
+                })
+                .when('/contacts',{
+                    templateUrl:"templates/pages/contactsAuth.html"
+                })
                 
             }])
      .controller('mainCntrl',['$routeParams',function($routeParams)

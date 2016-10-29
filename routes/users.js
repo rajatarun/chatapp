@@ -2,9 +2,9 @@
 
 /* GET users listing. */
 var watRouter = require('watson-developer-cloud');
-var router = function(express){
+var router = function(express,google){
 var userRouter = express.Router();
-var google = require('../config/oauth.js')();
+
 userRouter.use(function(req,res,next){
 	if(!req.user){
 		res.redirect('/');
@@ -72,10 +72,12 @@ userRouter.post('/place',function(req,res){
 		});
 	}
 });
+var authUrl;
+userRouter.get('/authUrl',function(req,res){
+	res.send(authUrl);
+});
 userRouter.get('/', function(req, res, next) {
-	google.getContacts(function(result){
-		console.log(result);
-	})
+	authUrl = google.authorize();
 	res.redirect('/#users/'+req.user.name.givenName);
 });
 // userRouter.get('/:username',function(req,res){

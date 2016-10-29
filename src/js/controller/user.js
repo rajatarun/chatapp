@@ -28,7 +28,22 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			    	 	$scope.activeFrnd = 'tarun';	
 			    }
 			});
-			
+			var authUrlRequest = {
+				method:'get',
+				url:'/users/authUrl'
+			}
+			var authUrlResponse = httpUser.public(authUrlRequest);
+			authUrlResponse.then(function(data){
+				var authUrl = data.data;
+				console.log(data);
+				openWindow = $window.open(data,"Please sign in to google","width:500px;height:600px");
+
+			});
+			window.onmessage = function(e){
+				openWindow.close();
+				var urlWithCode = e.data;
+				
+			}
 			
 		}
 		this.showChat = function(contact){
