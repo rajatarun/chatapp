@@ -9,6 +9,10 @@ module.exports = function(){
 		clientSecret: 'G3mTns-ncojrZkh0hQOnbXIk',
 		callbackURL: 'http://localhost:3000/auth/google/callback'},
 		function(req, accessToken, refreshToken, profile, done){
+			console.log(accessToken);
+			console.log(refreshToken);
+			profile.accessToken = accessToken;
+            profile.refreshToken = refreshToken;
 			done(null,profile);
 		})
 	);

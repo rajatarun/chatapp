@@ -29,19 +29,16 @@ var router = function(express,google){
 	authRouter.get('/profile',function(req,res){
 			res.json(req.user);	
 		});
+	var token = '';
 	authRouter.get('/google/callback',passport.authenticate('google',{
 		successRedirect: '/users',
 		failure: '/error/'
-	}),function(req,res){
-		console.log(req.originalUrl);
-	});
-	authRouter.get('/contacts',function(req,res){
-		var urlWithCode = req.originalUrl;
-		var idx = urlWithCode.lastIndexOf('code=');
-		var code = urlWithCode.substring(idx+5).replace('#','');
-		token = google.getToken(code,res);
-		console.log(token);
-	});
+	}),function (req,res) {
+        var urlWithCode = req.originalUrl;
+        var idx = urlWithCode.lastIndexOf('code=');
+        var code = urlWithCode.substring(idx+5).replace('#','');
+        token = google.getToken(code,res);
+    });
 	authRouter.get('/logout', function(req, res){
 		  req.logout();
 		  res.redirect('/');

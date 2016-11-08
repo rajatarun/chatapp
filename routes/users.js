@@ -4,7 +4,7 @@
 var watRouter = require('watson-developer-cloud');
 var router = function(express,google){
 var userRouter = express.Router();
-
+var https = require('https');
 userRouter.use(function(req,res,next){
 	if(!req.user){
 		res.redirect('/');
@@ -77,7 +77,18 @@ userRouter.get('/authUrl',function(req,res){
 	res.send(authUrl);
 });
 userRouter.get('/', function(req, res, next) {
-	authUrl = google.authorize();
+
+	console.log(req);
+    var contacts = '';
+    https.get("https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token="+req.user.refreshToken.access_token+ "&max-results=500&v=3.0",function(req,res){
+        req.on('data',function(response){
+            contacts += response;
+        })
+        req.on('end',function(){
+            console.log(JSON.parse(JSON.stringify(contacts)));
+
+        })
+    });
 	res.redirect('/#users/'+req.user.name.givenName);
 });
 // userRouter.get('/:username',function(req,res){
