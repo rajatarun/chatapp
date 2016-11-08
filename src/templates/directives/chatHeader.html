@@ -2,9 +2,9 @@
  <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
         <h2 flex-gt-sm="85">
-          <span>Smiley Chat</span>
+          <span style="font-family: 'Great Vibes', cursive;font-size:36px;"><b>Smiley Chat</b></span>
         </h2>
-        <md-button ng-if="userName">{{userName}}</md-button>
+        <md-button ng-if="userName" style="font-size:20px;font-weight:bold;">{{userName}}</md-button>
         <md-menu ng-if="userName">
         <md-button  class="md-icon-button" ng-click="$mdOpenMenu()" style="height: 4rem;width: 4rem;">
         <img  ng-repeat="ico in icon" src="{{ico.value}}" style="height: 100%;width: 100%;">

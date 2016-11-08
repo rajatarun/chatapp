@@ -11,14 +11,18 @@ userRouter.use(function(req,res,next){
 	}
 	next();
 });
-userRouter.get('/contacts',function(req,res){
-	if(req.user){
-		var contacts = require('../public/contacts.json');
-		res.send(contacts);
-	}
-	else{
-		res.send({status:'FAILED'});	
-	}
+userRouter.get('/contacts',function(req,resp){
+	var contacts = '';
+	var contactslist ={};
+    https.get("https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token="+req.user.refreshToken.access_token+ "&max-results=500&v=3.0",function(req,res){
+        req.on('data',function(response){
+            contacts += response;
+        })
+        req.on('end',function(){
+            resp.send(JSON.parse(JSON.stringify(contacts)));
+           
+        })
+    });
 });
 userRouter.get('/authenticate',function(req,res){
 	if(req.user){
@@ -78,17 +82,7 @@ userRouter.get('/authUrl',function(req,res){
 });
 userRouter.get('/', function(req, res, next) {
 
-	console.log(req);
-    var contacts = '';
-    https.get("https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token="+req.user.refreshToken.access_token+ "&max-results=500&v=3.0",function(req,res){
-        req.on('data',function(response){
-            contacts += response;
-        })
-        req.on('end',function(){
-            console.log(JSON.parse(JSON.stringify(contacts)));
-
-        })
-    });
+    
 	res.redirect('/#users/'+req.user.name.givenName);
 });
 // userRouter.get('/:username',function(req,res){

@@ -41,11 +41,11 @@
 				</md-toolbar>
 				<md-list>
 					<br>
-					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList | limitTo:20" ng-if="contact.Name">
+					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList.feed.entry | limitTo:30" ng-if="contact.gd$name.gd$fullName.$t">
 						<md-checkbox class="md-accent" flex="5"></md-checkbox>
-						<p flex="20" >{{contact.Name}}</p>
-						<p flex="30" >{{contact['E-mail 1 - Value']}}</p>
-						<p flex="30">{{contact['Phone 1 - Value']}}</p>
+						<p flex="30" >{{contact.gd$name.gd$fullName.$t}}</p>
+						<p flex="30" >{{contact.gd$email[0].address}}</p>
+						<span flex="20"></span>
 						<i class="material-icons" flex="5">star_border</i>
 						
 					</md-list-item>

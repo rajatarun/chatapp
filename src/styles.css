@@ -15,6 +15,10 @@ body{
     bottom: 120;
     position: fixed;
 }
+body{
+font-family: 'Kalam', cursive;
+font-weight: bold;
+}
 .emoji-picker{
     margin-left: 0.5rem;
     margin-bottom: -0.5rem;

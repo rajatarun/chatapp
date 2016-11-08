@@ -42,8 +42,8 @@
 			 	<div layout="column" class="md-tall" ng-controller="contactsController as contactCtrl">
 			 	<md-menu class="md-menu">
 			 	<md-menu-content width="4">
-				 <md-menu-item ng-repeat="contact in contactsList" ng-if="contact.Name">
-			 	<md-button class="md-no-ink" ng-click="ctrl.showChat(contact)">{{contact.Name}}</md-button>
+				 <md-menu-item ng-repeat="contact in contactsList.feed.entry | limitTo:30" ng-if="contact.gd$name.gd$fullName.$t">
+			 	<md-button layout="row" class="md-no-ink" ng-click="ctrl.showChat(contact)">{{contact.gd$name.gd$fullName.$t}}</md-button>
 			 	</md-menu-item>
 			 	</md-menu-content>
 			 	</md-menu>

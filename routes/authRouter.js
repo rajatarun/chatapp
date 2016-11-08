@@ -4,7 +4,6 @@ var passport = require('passport');
 var router = function(express,google){
 	var authRouter = express.Router();
 	authRouter.post('/signUp',function(req, res) {
-			console.log(req.body);
 			var url = require('../config/mongodb').url;
 			console.log(url);
 			mongodb.connect(url,function(err,db){

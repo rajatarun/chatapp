@@ -42,7 +42,7 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 		}
 		this.showChat = function(contact){
 			$scope.showChat = true;
-			$scope.activeFrnd = contact.Name;
+			$scope.activeFrnd = contact.gd$name.gd$fullName.$t;
 		}
 		var originatorEv;
 	    this.openMenu = function($mdOpenMenu, ev) {
