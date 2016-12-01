@@ -1,7 +1,7 @@
 <md-content ng-controller="UserController as ctrl">
 	<div id="chatapp">
 		<div class="center">
-			<div class="content-card"  style="overflow:hidden;" layout="row">
+			<div class="content-card"   layout="row">
 			 <md-sidenav class="sidenav leftSidenav"   md-is-locked-open="$mdMedia('gt-md')">
 			 	<div class="view chats-view">
 			 		<md-toolbar class="md-tall md-default-theme _md-toolbar-transitions">
@@ -35,18 +35,27 @@
 				 			<b>{{user.name.givenName}}</b>
 				 		</div>
 				 		<div class="md-toolbar-tools md-toolbar-bottom">
-				 		 
+				 		 <md-button ng-href="#/user/contacts" ><i class="material-icons">contact_mail</i></md-button>
+				 		 <md-input-container md-no-float>
+				 		 	<input type="text" placeholder="search">
+				 		 </md-input-container>
 				 		</div>
 			 		</md-toolbar>
 			 	</div>
-			 	<div layout="column" class="md-tall" ng-controller="contactsController as contactCtrl">
-			 	<md-menu class="md-menu">
-			 	<md-menu-content width="4">
-				 <md-menu-item ng-repeat="contact in contactsList.feed.entry | limitTo:30" ng-if="contact.gd$name.gd$fullName.$t">
-			 	<md-button layout="row" class="md-no-ink" ng-click="ctrl.showChat(contact)">{{contact.gd$name.gd$fullName.$t}}</md-button>
-			 	</md-menu-item>
+			 	<div layout="column"  ng-controller="contactsController as contactCtrl">
+			 	
+				 <md-list-item ng-repeat="contact in contactsList.feed.entry | limitTo:30"  ng-if="contact.gd$name.gd$fullName.$t" ng-click="ctrl.showChat(contact)">
+			 	<div>
+			 	{{contact.gd$name.gd$fullName.$t}}
+			 	</div>
+			 	<md-menu ng-mouseenter="showMenu">
+			 		<md-button ng-click="openContact(contact, $mdOpenMenu, $event)"><i class="material-icons" >more_vert</i></md-button>
+			 	<md-menu-content>
+			 	<md-menu-item >{{contact.gd$name.gd$fullName.$t}} <img ng-src="{{contact.link[0].href}}"/> </md-menu-item>
 			 	</md-menu-content>
 			 	</md-menu>
+			 	
+			 	</md-list-item>
 			 	</div>
 			 </md-sidenav>
 			<div class="chat" ng-show="showChat" layout="column" flex>

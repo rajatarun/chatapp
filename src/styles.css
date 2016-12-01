@@ -16,8 +16,21 @@ body{
     position: fixed;
 }
 body{
-font-family: 'Kalam', cursive;
-font-weight: bold;
+font-family: 'Alike', cursive;
+}
+.red-placeholder::-webkit-input-placeholder {
+    color: #E30000;
+}
+/* Firefox <18 */
+.red-placeholder:-moz-placeholder {
+    color: #E30000;
+}
+/* Firefox 19> */
+.red-placeholder::-moz-placeholder {
+    color: #E30000;
+}
+.red-placeholder:-ms-input-placeholder {  
+    color: #E30000;
 }
 .emoji-picker{
     margin-left: 0.5rem;

@@ -1,12 +1,13 @@
 var socket =io();
 var app = angular.module('app.user.main.page',['app.http.service']);
 app.controller('UserController',UserController);
-UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile','$filter','$q'];
-function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile, $filter,$q){
+UserController.$inject =['$rootScope','$window','$scope', '$location', 'httpUser','$mdSidenav', '$compile','$filter','$q', '$mdDialog'];
+function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidenav, $compile, $filter,$q, $mdDialog){
 		init();
 		$scope.var =":smile:";
 		$scope.msg = null;
 		$scope.showChat = false;
+		$scope.showMenu = false;
 		$scope.activeFrnd = '';
 		var msg = '';
 		function init(){
@@ -40,6 +41,20 @@ function UserController($rootScope,$window,$scope, $location, httpUser,$mdSidena
 			// 	var urlWithCode = e.data;
 			// }
 		}
+		
+		$scope.openContact = function(contact,$mdOpenMenu,ev){
+			$mdOpenMenu(ev);
+			$scope.showMenu = true;
+//	    	$mdDialog.show(
+//	    		      $mdDialog.alert()
+//	    		        .parent(angular.element(document.querySelector('#popupContainer')))
+//	    		        .clickOutsideToClose(true)
+//	    		        .title('Contact Details')
+//	    		        .textContent(contact.gd$name.gd$fullName.$t)
+//	    		        .ok('OK')
+//	    		        .targetEvent(event)
+//	    		    );
+	    }
 		this.showChat = function(contact){
 			$scope.showChat = true;
 			$scope.activeFrnd = contact.gd$name.gd$fullName.$t;

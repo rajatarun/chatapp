@@ -1,3 +1,4 @@
+
 var contacts = angular.module("app.user.contacts",['app.http.service']);
 
 contacts.$inject = ['$scope','httpUser','$mdDialog','$window'] 
@@ -30,6 +31,8 @@ contacts.controller('contactsController',function($scope,httpUser,$mdDialog,$win
 	      $scope.status = 'You didn\'t name your dog.';
 	    });
     };
+    
+    
 	response.then(function(res){
 		if(res.status === 'SUCCESS'){
 			$scope.$emit('userLogin',res.user);
