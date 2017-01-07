@@ -11,7 +11,8 @@ var router = function(express,google){
 				var collection = db.collection('users');
 				var user = {
 					username: req.body.name,
-					password: req.body.password
+					password: req.body.password,
+					email:req.body.email
 				};
 				collection.insert(user,function(err,result){
 					req.login(result,function(){
@@ -21,6 +22,23 @@ var router = function(express,google){
 			});
 	  		
 		});
+	authRouter.post('/newRegister',function (req,res) {
+        var url = require('../config/mongodb').url;
+        console.log(url);
+        mongodb.connect(url,function(err,db){
+            console.log(db+err);
+            var collection = db.collection('users');
+            var user = {
+                username: req.body.name,
+                password: req.body.password,
+                email:req.user.emails[0].value
+            };
+            collection.insert(user,function(err,result){
+            	console.log(result);
+                    res.redirect('/#users/'+req.user.name.givenName);
+            });
+        });
+    });
 	authRouter.post('/signIn',passport.authenticate('local',{ failureRedirect: '/'}),
 			function(req,res){
 					res.redirect('/auth/profile');

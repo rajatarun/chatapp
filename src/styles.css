@@ -63,6 +63,9 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolb
     background-color:#009688;
     color: rgba(255,255,255,0.87);
 }
+.md-whiteframe-4dp{
+    padding: 10px;
+}
 #chatapp .leftSidenav .view {
     overflow: hidden;
     width: 100%;

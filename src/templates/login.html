@@ -1,18 +1,17 @@
 
     <div layout="column" layout-align="center center">
-        <h1 class="md-display-2" data-ng-if="loginFrame">Login</h1>
-        <h1 class="md-display-2" data-ng-if="regFrame">Register</h1>
+        <div layout = "row">
+            <md-button ng-click="googleRedirect()" class="md-raised md-warn" flex-gt-sm><span class="fa fa-google" style="font-size:15px;"></span>  Sign in With Google</md-button>
+            <md-button ng-click="facebookRedirect()" class="md-raised md-primary" flex-gt-sm><span class="fa fa-facebook" style="font-size:15px;"></span> Sign in With Facebook</md-button>
+        </div>
+        <br>
     </div>
 <form name="loginForm"layout="row" novalidate>
-    <span hide-xs hide-sm flex-gt-sm="30"></span>
+    <span hide-xs hide-sm flex-gt-sm="20"></span>
 <!--    login code -->
-<md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="40" layout="column" layout-padding data-ng-if="loginFrame">
+<md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="45" layout="column" layout-padding data-ng-if="loginFrame">
 <br>
-    <div layout = "row">
-    <md-button ng-click="googleRedirect()" class="md-raised md-warn" flex-gt-sm><span class="fa fa-google" style="font-size:15px;"></span>  Sign in With Google</md-button>
-    <md-button ng-click="facebookRedirect()" class="md-raised md-primary" flex-gt-sm><span class="fa fa-facebook" style="font-size:15px;"></span> Sign in With Facebook</md-button>
-    </div>
-    <br>
+
     <div layout="column">
     <md-input-container  layout-margin>
     <label>USERNAME</label>
@@ -33,15 +32,10 @@
     <md-button class="md-raised md-primary">sign in</md-button>
     </div>
  </md-whiteframe>
- 
+    <span hide-xs hide-sm flex-gt-sm="5"></span>
 <!--  registration code -->
- <md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="40" layout="column" layout-padding data-ng-if="regFrame">
+ <md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="45" layout="column" layout-padding data-ng-if="regFrame">
 <br>
-    <div layout = "row">
-    <md-button ng-click="googleRedirect()" class="md-raised md-warn" flex-gt-sm><span class="fa fa-google" style="font-size:15px;"></span>  Sign in With Google</md-button>
-    <md-button ng-click="googleRedirect()" class="md-raised md-primary" flex-gt-sm><span class="fa fa-facebook" style="font-size:15px;"></span> Sign in With Facebook</md-button>
-    </div>
-    <br>
     <div layout="column">
     <md-input-container  layout-margin>
     <label>EMAIL</label>
@@ -96,7 +90,7 @@
     </div>
     </div>
     <div layout="column" layout-align="center center">
-    <md-button class="md-raised md-primary">Register</md-button>
+    <md-button ng-click="signUp()" class="md-raised md-primary">Register</md-button>
     </div>
  </md-whiteframe>
  <span hide-xs hide-sm flex-gt-sm="20"></span>

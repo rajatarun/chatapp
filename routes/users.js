@@ -1,10 +1,10 @@
-
-
+var mongodb = require('mongodb').MongoClient;
 /* GET users listing. */
 var watRouter = require('watson-developer-cloud');
 var router = function(express,google){
 var userRouter = express.Router();
 var https = require('https');
+    var passport = require('passport');
 userRouter.use(function(req,res,next){
 	if(!req.user){
 		res.redirect('/');
@@ -81,9 +81,24 @@ userRouter.get('/authUrl',function(req,res){
 	res.send(authUrl);
 });
 userRouter.get('/', function(req, res, next) {
+    var url = require('../config/mongodb').url;
+    console.log(url);
+    mongodb.connect(url,function(err,db){
+        console.log(db+err);
+        var collection = db.collection('users');
+        console.log(req.user?req.user.emails[0].value:'');
+        collection.findOne({email:req.user.emails?req.user.emails[0].value:''},function(err,result){
+        	console.log(result)
+			if(result){
+        	if(result.email === req.user.emails[0].value){
+                res.redirect('/#users/'+req.user.name.givenName);
+            }}
+            else{
+        		res.redirect('/#newRegister');
+			}
+        });
+    });
 
-    
-	res.redirect('/#users/'+req.user.name.givenName);
 });
 // userRouter.get('/:username',function(req,res){
 // 	res.send(req.user);

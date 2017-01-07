@@ -16,10 +16,12 @@ gulp.task('inject',function(){
 		bowerJson: require('./bower.json'),
 		directory: './src/lib'
 	};
+	console.log(options);
 	var injectPath = gulp.src(['./src/js/*.js','./src/js/controller/*.js','./src/js/directives/*.js','./src/js/services/*.js','./src/css/*.css'],{read:false});
 	var injectOptions = {
 		ignorePath:'/src'
 	};
+	console.log(injectPath);
 	return gulp.src('./src/*.html').pipe(wiredep(options)).pipe(inject(injectPath,injectOptions))
 	.pipe(gulp.dest('./src'));
 });
