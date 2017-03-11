@@ -2,7 +2,7 @@
 	<div id="chatapp">
 		<div class="center">
 			<div class="content-card"   layout="row">
-			 <md-sidenav class="sidenav leftSidenav"   md-is-locked-open="$mdMedia('gt-md')">
+			 <md-sidenav class="sidenav leftSidenav"   md-is-locked-open="$mdMedia('gt-xs')" layout-margin>
 			 	<div class="view chats-view">
 			 		<md-toolbar class="md-tall md-default-theme _md-toolbar-transitions">
 				 		<div class="md-toolbar-tools md-toolbar-top">
@@ -42,14 +42,14 @@
 				 		</div>
 			 		</md-toolbar>
 			 	</div>
-			 	<div layout="column"  ng-controller="contactsController as contactCtrl">
+			 	<div layout="column"  ng-controller="contactsController as contactCtrl" >
 			 	
-				 <md-list-item ng-repeat="contact in contactsList.feed.entry | limitTo:30"  ng-if="contact.gd$name.gd$fullName.$t" ng-click="ctrl.showChat(contact)">
-			 	<div>
+				 <md-list-item ng-repeat="contact in contactsList.feed.entry | limitTo:30" layout-align="space-between start"  ng-if="contact.gd$name.gd$fullName.$t" ng-click="ctrl.showChat(contact)">
+			 	<div flex="60">
 			 	{{contact.gd$name.gd$fullName.$t}}
 			 	</div>
-			 	<md-menu ng-mouseenter="showMenu">
-			 		<md-button ng-click="openContact(contact, $mdOpenMenu, $event)"><i class="material-icons" >more_vert</i></md-button>
+			 	<md-menu flex ng-mouseenter="showMenu" layout="column" layout-align="end end" >
+			 		<md-button ng-click="openContact(contact, $mdOpenMenu, $event)" class="md-icon-button"><md-icon class="material-icons" >more_vert</md-icon></md-button>
 			 	<md-menu-content>
 			 	<md-menu-item >{{contact.gd$name.gd$fullName.$t}} <img ng-src="{{contact.link[0].href}}"/> </md-menu-item>
 			 	</md-menu-content>
@@ -62,8 +62,7 @@
 				<md-toolbar class=" md-default-theme _md-toolbar-transitions">
 			 		<div class="md-toolbar-tools md-toolbar-top">
 	 					<i class="material-icons" style="font-size:36px;height:80%;">&#xE55A;</i>
-			 			<md-icon class="material-icons status online" ng-click="ctrl.openMenu($mdOpenMenu, $event)">done</md-icon>
-			 			<b style="color:white;">{{activeFrnd}}</b>
+			 			<div style="color:white;"><b>{{activeFrnd}}</b></div>
 				 	</div>
 				</md-toolbar>
 				<md-content id="messagesContainer" class="chat-content ms-scroll ps-container" flex>
