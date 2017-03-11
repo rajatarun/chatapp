@@ -1,4 +1,4 @@
-	<div layout="row"  ng-controller="contactsController as contactCtrl">
+	<div layout="row" class="contactsList" ng-controller="contactsController as contactCtrl">
 		<div flex="25" layout-margin>
 			<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-2dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 				<md-list>
@@ -41,7 +41,7 @@
 				</md-toolbar>
 				<md-list>
 					<br>
-					<md-list-item layout="row" layout-wrap ng-repeat="contact in contactsList.feed.entry | limitTo:30" ng-if="contact.gd$name.gd$fullName.$t">
+					<md-list-item layout="row" id="contactsNav" layout-wrap ng-repeat="contact in contactsList.feed.entry | limitTo:30" ng-if="contact.gd$name.gd$fullName.$t">
 						<md-checkbox class="md-accent" flex="5"></md-checkbox>
 						<p flex="30" >{{contact.gd$name.gd$fullName.$t}}</p>
 						<p flex="30" >{{contact.gd$email[0].address}}</p>
