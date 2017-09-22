@@ -9,7 +9,7 @@
 <form name="loginForm"layout="row" novalidate>
     <span hide-xs hide-sm flex-gt-sm="20"></span>
 <!--    login code -->
-<md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="45" layout="column" layout-padding data-ng-if="loginFrame">
+<md-whiteframe class="md-whiteframe-4dp" flex-gt-xs="45" layout="column" layout-padding data-ng-if="loginFrame">
 <br>
 
     <div layout="column">
@@ -34,59 +34,57 @@
  </md-whiteframe>
     <span hide-xs hide-sm flex-gt-sm="5"></span>
 <!--  registration code -->
- <md-whiteframe class="md-whiteframe-4dp" flex-gt-sm="45" layout="column" layout-padding data-ng-if="regFrame">
+ <md-whiteframe class="md-whiteframe-4dp" flex-gt-xs="45" layout="column" layout-padding data-ng-if="regFrame">
 <br>
-    <div layout="column">
-    <md-input-container  layout-margin>
+    <div layout="column" layout-margin>
+    <md-input-container>
     <label>EMAIL</label>
     <input type="email" name="email" required data-ng-model="formData.email" minlength="8">
     <div ng-messages="loginForm.email.$error">
          <div ng-message="required" >this is required.</div>
     </div>
     </md-input-container>
-    <md-input-container  layout-margin>
+    <md-input-container  >
     <label>USERNAME</label>
     <input type="text" name="username" required data-ng-model="formData.username" minlength="8">
     <div ng-messages="loginForm.username.$error">
          <div ng-message="required" >this is required.</div>
     </div>
     </md-input-container>
-    <md-input-container  layout-margin>
+    <md-input-container  >
     <label>PASSWORD</label>
     <input type="password" name="password" required data-ng-model="formData.password" minlength="8">
     <div ng-messages="loginForm.password.$error">
          <div ng-message="required" >this is required.</div>
     </div>
     </md-input-container>
-    <md-input-container  layout-margin>
+    <md-input-container  >
     <label>CONFIRM PASSWORD</label>
     <input type="password" name="repassword" required data-ng-model="formData.repassword" minlength="8">
     <div ng-messages="loginForm.repassword.$error">
          <div ng-message="required" >this is required.</div>
     </div>
     </md-input-container>
-    <div layout="row" layout-margin>
-    <p class="md-body-1">Gender</p>
-    <md-input-container  >
-        <md-radio-group ng-model="formData.gender" name="gender" required layout-gt-sm="row">
-      <md-radio-button value="male">Male</md-radio-button>
-      <md-radio-button value="female"> Female </md-radio-button>
-    </md-radio-group>
-    <div ng-messages="loginForm.gender.$error">
+    <div layout="column">
+        <md-input-container layout ="row" >
+            <p class="md-body-1">Gender&nbsp;</p>
+            <md-radio-group ng-model="formData.gender" name="gender" required layout-gt-sm="row">
+        <md-radio-button value="male">Male</md-radio-button>
+        <md-radio-button value="female"> Female </md-radio-button>
+        </md-radio-group>
+        <div ng-messages="loginForm.gender.$error">
+                <div ng-message="required">This date is required!</div>
+        </div>
+        </md-input-container>
+        <div layout ="row">
+        <p class="md-body-1">Date of Birth</p>
+        <md-datepicker ng-model="formData.DOB" md-placeholder="MM/DD/YYYY" name="DOB" required></md-datepicker>
+        <md-input-container>
+        <div ng-messages="loginForm.DOB.$error">
             <div ng-message="required">This date is required!</div>
-          </div>
-    </md-input-container>
-    </div>
-    <br>
-    <div layout="row">
-    <p class="md-body-1">Date of Birth</p>
-    <md-input-container  layout-margin>
-          <label>MM/DD/YYYY</label>
-          <md-datepicker ng-model="formData.DOB" name="DOB" required></md-datepicker>
-          <div ng-messages="loginForm.DOB.$error">
-            <div ng-message="required">This date is required!</div>
-          </div>
-    </md-input-container>
+        </div>
+        </md-input-container>
+        </div>
     </div>
     </div>
     <div layout="column" layout-align="center center">
